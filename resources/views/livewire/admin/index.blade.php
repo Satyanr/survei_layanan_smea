@@ -1,10 +1,9 @@
 <div>
     <div class="row mb-5">
         <div class="col ms-3 text-center">
-            <h2>Selamat Datang</h2>
-            <img src="/img/dbadmin_asst.png" alt="" width="250">
+            <img src="/img/dbadmin_asst.png" alt="" width="400">
         </div>
-        @if (auth()->user()->role == 'UnitKerja')
+        {{-- @if (auth()->user()->role == 'UnitKerja')
             <div class="col">
                 <h3 class="text-center">Informasi</h3>
                 <div class="row">
@@ -20,11 +19,9 @@
                     </div>
                 </div>
             </div>
-        @endif
-    </div>
-    <div class="row text-center">
+        @endif --}}
         <div class="col">
-            <div class="row">
+            <div class="row row-cols-2">
                 <div class="col mb-3">
                     <div class="card shadow bg-body-tertiary rounded-4 rounded-pill border-0">
                         <div class="card-body">
@@ -59,5 +56,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row text-center">
+        
     </div>
 </div>

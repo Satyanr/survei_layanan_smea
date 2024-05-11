@@ -1,86 +1,84 @@
 <div>
-    <div class="row mb-5 justify-content-between">
-        <div class="col ms-3">
-            <div class="row">
-                <div class="col-auto">
-                    <h3>Daftar Pengguna </h3>
-                </div>
-                <div class="col-1 text-center">
-                    <a href="javascript:void(0)" class="btn btn-outline-success border-0" data-bs-toggle="modal"
-                        data-bs-target="#ModalAkun">
-                        <b>
-                            <i class="fa-solid fa-user-plus"></i> <br>
-                            <small>Tambahkan</small>
-                        </b>
-                    </a>
+    <div class="p-5">
+        <div class="row mb-5 justify-content-between">
+            <div class="col-auto ms-3">
+                <h3>Daftar Pengguna </h3>
+            </div>
+            <div class="col">
+                <div class="input-group mb-3 w-75 m-auto">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="form-control" placeholder="Cari Pengguna" aria-label="Cari Pengguna"
+                        aria-describedby="basic-addon1" wire:model='searchuser' wire:input='resetPageUser'>
                 </div>
             </div>
-        </div>
-        <div class="col-auto">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
-                <input type="text" class="form-control" placeholder="Cari Pengguna" aria-label="Cari Pengguna"
-                    aria-describedby="basic-addon1" wire:model='searchuser' wire:input='resetPageUser'>
+            <div class="col-auto text-center">
+                <a href="javascript:void(0)" class="btn btn-primary border-0" data-bs-toggle="modal"
+                    data-bs-target="#ModalAkun">
+                    <b>
+                        <i class="fa-solid fa-user-plus"></i>
+                        <small>Tambahkan</small>
+                    </b>
+                </a>
             </div>
         </div>
-    </div>
-    @if (session()->has('message'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('message') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-    <div class="row">
-        <div class="col table-responsive">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Penanggung Jawab Unit</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($penggunas->where('role', '!=', 'SuperAdmin') as $pengguna)
+        @if (session()->has('message'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        <div class="row">
+            <div class="col table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $pengguna->name }}</td>
-                            <td>{{ $pengguna->email }}</td>
-                            <td>{{ $pengguna->role }}</td>
-                            <td>{{ $pengguna->penanggung_jawab }}</td>
-                            <td>
-                                <div class="btn-group dropend">
-                                    <button type="button" class="btn btn-outline-dark dropdown-toggle border-0"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal"
-                                                data-bs-target="#ModalAkun"
-                                                wire:click='edit({{ $pengguna->id }})'>Edit</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item text-success"
-                                                href="{{ route('admin.impersonate', $pengguna) }}">Masuk</a>
-                                        </li>
-                                        <li><a class="dropdown-item text-danger" href="javascript:void(0)"
-                                                wire:click.prevent="delete({{ $pengguna->id }})">Hapus</a></li>
-
-                                    </ul>
-                                </div>
-                            </td>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Penanggung Jawab Unit</th>
+                            <th>Aksi</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($penggunas->where('role', '!=', 'SuperAdmin') as $pengguna)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $pengguna->name }}</td>
+                                <td>{{ $pengguna->email }}</td>
+                                <td>{{ $pengguna->role }}</td>
+                                <td>{{ $pengguna->penanggung_jawab }}</td>
+                                <td>
+                                    <div class="btn-group dropend">
+                                        <button type="button" class="btn btn-outline-dark dropdown-toggle border-0"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="javascript:void(0)"
+                                                    data-bs-toggle="modal" data-bs-target="#ModalAkun"
+                                                    wire:click='edit({{ $pengguna->id }})'>Edit</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item text-success"
+                                                    href="{{ route('admin.impersonate', $pengguna) }}">Masuk</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-danger" href="javascript:void(0)"
+                                                    wire:click.prevent="delete({{ $pengguna->id }})">Hapus</a></li>
+
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            {{ $penggunas->links() }}
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                {{ $penggunas->links() }}
+            </div>
         </div>
     </div>
 

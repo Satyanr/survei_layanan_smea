@@ -63,11 +63,11 @@
     <div class="row justify-content-between">
         <div class="col text-center">
             <div class="row justify-content-between">
-                <div class="col">
+                <div class="col-auto px-3">
                     <h4>Kategori</h4>
                 </div>
-                <div class="col-auto">
-                    <div class="input-group mb-3">
+                <div class="col d-flex justify-content-end">
+                    <div class="input-group mb-3 w-75">
                         <span class="input-group-text" id="basic-addon1"><i
                                 class="fa-solid fa-magnifying-glass"></i></span>
                         <input type="text" class="form-control" placeholder="Cari Kategori"
@@ -125,45 +125,7 @@
                 </div>
             </div>
         </div>
-        <div class="col">
-            <h4 class="text-center">Keterangan</h4>
-            <div class="row justify-content-center">
-                <div class="col-auto px-3">
-                    <div class="accordion" id="accordionExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Klik untuk melihat keterangan KODE
-                                </button>
-                            </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">
-                                            <h6>TNG1: Pengaduan</h6>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <h6>TNG2: Permintaan Informasi</h6>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <h6>TNG3: Saran</h6>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <h6>TNG4: Kerusakan</h6>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <h6>TNG5: Semuanya</h6>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         {{-- <div class="col">
             <div class="row justify-content-between">
                 <div class="col">

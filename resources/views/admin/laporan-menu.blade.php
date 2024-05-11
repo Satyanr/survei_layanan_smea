@@ -4,18 +4,27 @@
 @endpush
 
 @section('content')
-    <div class="container mt-5 pt-5 justify-content-center">
+    <div class="container mt-5 justify-content-center">
         <div class="shadow p-3 mb-5 bg-body-tertiary rounded-4">
             <div class="row mb-3">
                 <div class="col">
                     <form action="{{ route('laporan-pengaduan-masyarakat') }}" method="GET">
-                        <div class="col">
-                            <div class="input-group mb-3">
-                                <input type="date" class="form-control" name="start" id="start" required>
-                                <span class="input-group-text">to</span>
-                                <input type="date" class="form-control" name="end" id="end" required>
+                        <div class="row text-center py-3">
+                            <div class="col">
+                                <div class="d-flex justify-content-end">
+                                    <h5 class="w-50">Cetak Laporan</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-flex justify-content-end">
+                                <div class="input-group mb-3 w-50">
+                                    <input type="date" class="form-control" name="start" id="start" required>
+                                    <span class="input-group-text">to</span>
+                                    <input type="date" class="form-control" name="end" id="end" required>
 
-                                <button class="btn btn-primary" type="submit">Unduh</button>
+                                    <button class="btn btn-primary" type="submit">Unduh</button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -33,146 +42,184 @@
                     </button>
                 </div> --}}
             </div>
-        </div>
-        <div class="row row-cols-2 text-center">
-            <div class="col">
-                <a href="{{ route('admin.daftarpengaduan', 'Permintaan Informasi') }}" style="text-decoration: none;">
-                    <div class="shadow p-3 mb-5 bg-body-tertiary rounded-4" style="height: 20vh">
-                        <div class="text-primary">
-                            <h3>
-                                <i class="fa-solid fa-file-circle-question"></i><br>
-                                @php
-                                    $pengaduansNotLinked = \App\Models\Pengaduan::notHaveLinked()
-                                        ->where('tentang', 'Permintaan Informasi')
-                                        ->get();
-                                    $pengaduanBelumTindak = \App\Models\Pengaduan::where(
-                                        'tentang',
-                                        'Permintaan Informasi',
-                                    )
-                                        ->whereHas('pengaduanLinks', function ($query) {
-                                            $query->where('user_id', auth()->user()->id);
-                                        })
-                                        ->NotHaveTindakLanjut()
-                                        ->get();
-                                @endphp
-                                Permintaan Informasi
-                                @if (auth()->user()->role == 'UnitKerja')
-                                    @if ($pengaduanBelumTindak->count() > 0)
-                                        <span
-                                            class="badge text-bg-danger rounded-circle">{{ $pengaduanBelumTindak->count() }}</span>
-                                    @endif
-                                @else
-                                    @if ($pengaduansNotLinked->count() > 0)
-                                        <span
-                                            class="badge text-bg-danger rounded-circle">{{ $pengaduansNotLinked->count() }}</span>
-                                    @endif
-                                @endif
-                            </h3>
+            <div class="row text-center">
+                <div class="col">
+                    <a href="{{ route('admin.daftarpengaduan', 'Permintaan Informasi') }}" style="text-decoration: none;">
+                        <div class="card border-1 rounded-2  d-flex flex-column h-100">
+                            <div class="card-body">
+                                <div class="row h-75 p-5">
+                                    <div class="col">
+                                        <img src="/img/PInformasi.png" class="img-fluid" alt="...">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>
+                                            @php
+                                                $pengaduansNotLinked = \App\Models\Pengaduan::notHaveLinked()
+                                                    ->where('tentang', 'Permintaan Informasi')
+                                                    ->get();
+                                                $pengaduanBelumTindak = \App\Models\Pengaduan::where(
+                                                    'tentang',
+                                                    'Permintaan Informasi',
+                                                )
+                                                    ->whereHas('pengaduanLinks', function ($query) {
+                                                        $query->where('user_id', auth()->user()->id);
+                                                    })
+                                                    ->NotHaveTindakLanjut()
+                                                    ->get();
+                                            @endphp
+                                            Permintaan Informasi
+                                            @if (auth()->user()->role == 'UnitKerja')
+                                                @if ($pengaduanBelumTindak->count() > 0)
+                                                    <span
+                                                        class="badge text-bg-danger rounded-circle">{{ $pengaduanBelumTindak->count() }}</span>
+                                                @endif
+                                            @else
+                                                @if ($pengaduansNotLinked->count() > 0)
+                                                    <span
+                                                        class="badge text-bg-danger rounded-circle">{{ $pengaduansNotLinked->count() }}</span>
+                                                @endif
+                                            @endif
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="{{ route('admin.daftarpengaduan', 'Saran') }}" style="text-decoration: none;">
-                    <div class="shadow p-3 mb-5 bg-body-tertiary rounded-4" style="height: 20vh">
-                        <div class="text-warning">
-                            <h3>
-                                <i class="fa-solid fa-hands-holding-circle"></i><br>
-                                @php
-                                    $pengaduansNotLinked = \App\Models\Pengaduan::notHaveLinked()
-                                        ->where('tentang', 'Saran')
-                                        ->get();
-                                    $pengaduanBelumTindak = \App\Models\Pengaduan::where('tentang', 'Saran')
-                                        ->whereHas('pengaduanLinks', function ($query) {
-                                            $query->where('user_id', auth()->user()->id);
-                                        })
-                                        ->NotHaveTindakLanjut()
-                                        ->get();
-                                @endphp
-                                Saran
-                                @if (auth()->user()->role == 'UnitKerja')
-                                    @if ($pengaduanBelumTindak->count() > 0)
-                                        <span
-                                            class="badge text-bg-danger rounded-circle">{{ $pengaduanBelumTindak->count() }}</span>
-                                    @endif
-                                @else
-                                    @if ($pengaduansNotLinked->count() > 0)
-                                        <span
-                                            class="badge text-bg-danger rounded-circle">{{ $pengaduansNotLinked->count() }}</span>
-                                    @endif
-                                @endif
-                            </h3>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ route('admin.daftarpengaduan', 'Saran') }}" style="text-decoration: none;">
+                        <div class="card border-1 rounded-2  d-flex flex-column h-100">
+                            <div class="card-body">
+                                <div class="row h-75 p-5">
+                                    <div class="col">
+                                        <img src="/img/PInformasi.png" class="img-fluid" alt="...">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>
+                                            @php
+                                                $pengaduansNotLinked = \App\Models\Pengaduan::notHaveLinked()
+                                                    ->where('tentang', 'Saran')
+                                                    ->get();
+                                                $pengaduanBelumTindak = \App\Models\Pengaduan::where('tentang', 'Saran')
+                                                    ->whereHas('pengaduanLinks', function ($query) {
+                                                        $query->where('user_id', auth()->user()->id);
+                                                    })
+                                                    ->NotHaveTindakLanjut()
+                                                    ->get();
+                                            @endphp
+                                            Saran
+                                            @if (auth()->user()->role == 'UnitKerja')
+                                                @if ($pengaduanBelumTindak->count() > 0)
+                                                    <span
+                                                        class="badge text-bg-danger rounded-circle">{{ $pengaduanBelumTindak->count() }}</span>
+                                                @endif
+                                            @else
+                                                @if ($pengaduansNotLinked->count() > 0)
+                                                    <span
+                                                        class="badge text-bg-danger rounded-circle">{{ $pengaduansNotLinked->count() }}</span>
+                                                @endif
+                                            @endif
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="{{ route('admin.daftarpengaduan', 'Pengaduan') }}" style="text-decoration: none;">
-                    <div class="shadow p-3 mb-5 bg-body-tertiary rounded-4" style="height: 20vh">
-                        <div class="text-danger">
-                            <h3>
-                                <i class="fa-solid fa-file-circle-exclamation"></i><br>
-                                @php
-                                    $pengaduansNotLinked = \App\Models\Pengaduan::notHaveLinked()
-                                        ->where('tentang', 'Pengaduan')
-                                        ->get();
-                                    $pengaduanBelumTindak = \App\Models\Pengaduan::where('tentang', 'Pengaduan')
-                                        ->whereHas('pengaduanLinks', function ($query) {
-                                            $query->where('user_id', auth()->user()->id);
-                                        })
-                                        ->NotHaveTindakLanjut()
-                                        ->get();
-                                @endphp
-                                Pengaduan
-                                @if (auth()->user()->role == 'UnitKerja')
-                                    @if ($pengaduanBelumTindak->count() > 0)
-                                        <span
-                                            class="badge text-bg-danger rounded-circle">{{ $pengaduanBelumTindak->count() }}</span>
-                                    @endif
-                                @else
-                                    @if ($pengaduansNotLinked->count() > 0)
-                                        <span
-                                            class="badge text-bg-danger rounded-circle">{{ $pengaduansNotLinked->count() }}</span>
-                                    @endif
-                                @endif
-                            </h3>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ route('admin.daftarpengaduan', 'Pengaduan') }}" style="text-decoration: none;">
+                        <div class="card border-1 rounded-2  d-flex flex-column h-100">
+                            <div class="card-body">
+                                <div class="row h-75 p-5">
+                                    <div class="col">
+                                        <img src="/img/Pengaduan.png" class="img-fluid" alt="...">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>
+                                            @php
+                                                $pengaduansNotLinked = \App\Models\Pengaduan::notHaveLinked()
+                                                    ->where('tentang', 'Pengaduan')
+                                                    ->get();
+                                                $pengaduanBelumTindak = \App\Models\Pengaduan::where(
+                                                    'tentang',
+                                                    'Pengaduan',
+                                                )
+                                                    ->whereHas('pengaduanLinks', function ($query) {
+                                                        $query->where('user_id', auth()->user()->id);
+                                                    })
+                                                    ->NotHaveTindakLanjut()
+                                                    ->get();
+                                            @endphp
+                                            Pengaduan
+                                            @if (auth()->user()->role == 'UnitKerja')
+                                                @if ($pengaduanBelumTindak->count() > 0)
+                                                    <span
+                                                        class="badge text-bg-danger rounded-circle">{{ $pengaduanBelumTindak->count() }}</span>
+                                                @endif
+                                            @else
+                                                @if ($pengaduansNotLinked->count() > 0)
+                                                    <span
+                                                        class="badge text-bg-danger rounded-circle">{{ $pengaduansNotLinked->count() }}</span>
+                                                @endif
+                                            @endif
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="{{ route('admin.daftarpengaduan', 'Kerusakan') }}" style="text-decoration: none;">
-                    <div class="shadow p-3 mb-5 bg-body-tertiary rounded-4" style="height: 20vh">
-                        <div class="text-danger">
-                            <h3>
-                                <i class="fa-solid fa-heart-crack"></i><br>
-                                @php
-                                    $pengaduansNotLinked = \App\Models\Pengaduan::notHaveLinked()
-                                        ->where('tentang', 'Kerusakan')
-                                        ->get();
-                                    $pengaduanBelumTindak = \App\Models\Pengaduan::where('tentang', 'Kerusakan')
-                                        ->whereHas('pengaduanLinks', function ($query) {
-                                            $query->where('user_id', auth()->user()->id);
-                                        })
-                                        ->NotHaveTindakLanjut()
-                                        ->get();
-                                @endphp
-                                Kerusakan
-                                @if (auth()->user()->role == 'UnitKerja')
-                                    @if ($pengaduanBelumTindak->count() > 0)
-                                        <span
-                                            class="badge text-bg-danger rounded-circle">{{ $pengaduanBelumTindak->count() }}</span>
-                                    @endif
-                                @else
-                                    @if ($pengaduansNotLinked->count() > 0)
-                                        <span
-                                            class="badge text-bg-danger rounded-circle">{{ $pengaduansNotLinked->count() }}</span>
-                                    @endif
-                                @endif
-                            </h3>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ route('admin.daftarpengaduan', 'Kerusakan') }}" style="text-decoration: none;">
+                        <div class="card border-1 rounded-2  d-flex flex-column h-100">
+                            <div class="card-body">
+                                <div class="row h-75 p-5">
+                                    <div class="col">
+                                        <img src="/img/PInformasi.png" class="img-fluid" alt="...">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>
+                                            @php
+                                                $pengaduansNotLinked = \App\Models\Pengaduan::notHaveLinked()
+                                                    ->where('tentang', 'Kerusakan')
+                                                    ->get();
+                                                $pengaduanBelumTindak = \App\Models\Pengaduan::where(
+                                                    'tentang',
+                                                    'Kerusakan',
+                                                )
+                                                    ->whereHas('pengaduanLinks', function ($query) {
+                                                        $query->where('user_id', auth()->user()->id);
+                                                    })
+                                                    ->NotHaveTindakLanjut()
+                                                    ->get();
+                                            @endphp
+                                            Kerusakan
+                                            @if (auth()->user()->role == 'UnitKerja')
+                                                @if ($pengaduanBelumTindak->count() > 0)
+                                                    <span
+                                                        class="badge text-bg-danger rounded-circle">{{ $pengaduanBelumTindak->count() }}</span>
+                                                @endif
+                                            @else
+                                                @if ($pengaduansNotLinked->count() > 0)
+                                                    <span
+                                                        class="badge text-bg-danger rounded-circle">{{ $pengaduansNotLinked->count() }}</span>
+                                                @endif
+                                            @endif
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
