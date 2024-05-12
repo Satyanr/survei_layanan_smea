@@ -77,6 +77,10 @@ class DaftarPengaduan extends Component
 
         foreach ($this->selectedUnits as $unitId => $value) {
             if ($value) {
+                $pengaduanLink = PengaduanLink::where('pengaduan_id', $pengaduan->id)->where('user_id', $unitId)->first();
+                if ($pengaduanLink) {
+                    continue;
+                }
                 PengaduanLink::create([
                     'pengaduan_id' => $pengaduan->id,
                     'user_id' => $unitId,

@@ -141,7 +141,15 @@
                             </td>
                             <td>
                                 @if (auth()->user()->role != 'UnitKerja')
-                                    <a href="javascript:void(0)" class="btn btn-outline-warning border-0 btn-sm"
+                                    @php
+                                        $isLinked = \App\Models\PengaduanLink::where(
+                                            'pengaduan_id',
+                                            $pengaduan->id,
+                                        )->exists();
+                                    @endphp
+
+                                    <a href="javascript:void(0)"
+                                        class="btn btn-outline-{{ $isLinked ? 'warning' : 'danger' }} border-0 btn-sm"
                                         data-bs-toggle="modal" data-bs-target="#ModalUnit"
                                         wire:click='setidpengaduan({{ $pengaduan->id }})'>
                                         <i class="fa-solid fa-share"></i> <br> Teruskan Ke Unit
