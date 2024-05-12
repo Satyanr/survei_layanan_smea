@@ -6,30 +6,31 @@
 @section('content')
     <div class="container mt-5 justify-content-center">
         <div class="shadow p-3 mb-5 bg-body-tertiary rounded-4">
-            <div class="row mb-3">
-                <div class="col">
-                    <form action="{{ route('laporan-pengaduan-masyarakat') }}" method="GET">
-                        <div class="row text-center py-3">
-                            <div class="col">
-                                <div class="d-flex justify-content-end">
-                                    <h5 class="w-50">Cetak Laporan</h5>
+            @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'SuperAdmin')
+                <div class="row mb-3">
+                    <div class="col">
+                        <form action="{{ route('laporan-pengaduan-masyarakat') }}" method="GET">
+                            <div class="row text-center py-3">
+                                <div class="col">
+                                    <div class="d-flex justify-content-end">
+                                        <h5 class="w-50">Cetak Laporan</h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col d-flex justify-content-end">
-                                <div class="input-group mb-3 w-50">
-                                    <input type="date" class="form-control" name="start" id="start" required>
-                                    <span class="input-group-text">to</span>
-                                    <input type="date" class="form-control" name="end" id="end" required>
+                            <div class="row">
+                                <div class="col d-flex justify-content-end">
+                                    <div class="input-group mb-3 w-50">
+                                        <input type="date" class="form-control" name="start" id="start" required>
+                                        <span class="input-group-text">to</span>
+                                        <input type="date" class="form-control" name="end" id="end" required>
 
-                                    <button class="btn btn-primary" type="submit">Unduh</button>
+                                        <button class="btn btn-primary" type="submit">Unduh</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-                {{-- <div class="col justify-content-center d-flex">
+                        </form>
+                    </div>
+                    {{-- <div class="col justify-content-center d-flex">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#LaporanPengaduanModal">
                         Laporan Pengaduan Masyarakat <i class="fa-solid fa-file-word"></i>
@@ -41,7 +42,9 @@
                         Laporan Tindak Lanjut <i class="fa-solid fa-file-word"></i>
                     </button>
                 </div> --}}
-            </div>
+                </div>
+            @endif
+
             <div class="row text-center">
                 <div class="col">
                     <a href="{{ route('admin.daftarpengaduan', 'Permintaan Informasi') }}" style="text-decoration: none;">
@@ -94,7 +97,7 @@
                             <div class="card-body">
                                 <div class="row h-75 p-5">
                                     <div class="col">
-                                        <img src="/img/PInformasi.png" class="img-fluid" alt="...">
+                                        <img src="/img/Saran.png" class="img-fluid" alt="...">
                                     </div>
                                 </div>
                                 <div class="row">
