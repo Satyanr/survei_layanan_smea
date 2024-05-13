@@ -115,6 +115,14 @@ class DaftarPengaduan extends Component
         $this->identitasindicator = false;
     }
 
+    public function destroyTindakan($id)
+    {
+        $tindakan = LaporanTindakLanjut::find($id);
+        $tindakan->delete();
+        session()->flash('message', 'Tindakan Berhasil Dihapus');
+        return redirect()->to('/admin/daftar-pengaduan/pengaduan');
+    }
+
     public function showGambar($id)
     {
         $pengaduan = Pengaduan::find($id);

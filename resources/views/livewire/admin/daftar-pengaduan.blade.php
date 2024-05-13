@@ -156,10 +156,22 @@
                                     </a>
                                 @else
                                     @foreach ($pengaduan->pengaduanLinks as $linked)
+                                        @php
+                                            $tindaklanjutExists = $linked->pengaduan->tindaklanjuts->isNotEmpty();
+                                        @endphp
                                         @if ($linked->unitkerja->id == auth()->user()->id)
                                             <a href="{{ route('admin.tindaklanjut', $pengaduan->id) }}"
                                                 class="btn btn-outline-primary border-0 btn-sm">
-                                                <i class="fa-regular fa-note-sticky"></i> <br> Tindak Lanjuti
+                                                <i class="fa-regular fa-note-sticky"></i> <br>
+                                                @if ($tindaklanjutExists)
+                                                    @if ($linked->pengaduan->tindaklanjuts->contains('user_id', auth()->user()->id))
+                                                        Edit Tindak Lanjut
+                                                    @else
+                                                        Tindak Lanjuti
+                                                    @endif
+                                                @else
+                                                    Tindak Lanjuti
+                                                @endif
                                             </a>
                                         @endif
                                     @endforeach
@@ -273,6 +285,15 @@
                                     <div id="collapse{{ $tanggapan->id }}" class="accordion-collapse collapse show"
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body text-center">
+                                            <div class="row justify-content-end">
+                                                <div class="col-auto">
+                                                    <a href="javascript:void(0)"
+                                                        class="btn btn-outline-danger border-0 btn-sm"
+                                                        wire:click='destroyTindakan({{ $tanggapan->id }})'>
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
                                             @if ($tanggapan->bukti_foto)
                                                 <div class="row justify-content-center">
                                                     <div class="col-auto w-25">
