@@ -24,7 +24,7 @@
                 </div>
                 <div class="row text-center pb-5 fs-5">
                     <div class="col d-flex justify-content-center">
-                        <div class="form-control w-50">
+                        <div class="form-control p-3 w-75">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input @error('tentang') is-invalid @enderror" type="radio"
                                     id="pengaduan" value="Pengaduan" wire:click="tentoff" wire:model='tentang'>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="row text-center pb-5 fs-5">
                     <div class="col d-flex justify-content-center">
-                        <div class="form-control w-50">
+                        <div class="form-control p-3 w-75">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input @error('identitas_pengaduan') is-invalid @enderror"
                                     type="radio" name="inlineRadioOptions" id="lengkap" value="Lengkap"
