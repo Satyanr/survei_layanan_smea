@@ -63,8 +63,8 @@
                                         wire:click='showIdentitas({{ $pengaduan->id }})'>
                                         {{ $pengaduan->identitas_pengaduan }}
                                         <br>
-                                        <small class="text-danger" style="font-size: 0.7rem;">Click
-                                            For Info</small>
+                                        <small class="btn btn-outline-danger btn-sm mt-2"
+                                            style="font-size: 0.7rem;">Informasi Lengkap</small>
                                     </a>
                                 @else
                                     {{ $pengaduan->identitas_pengaduan }}
@@ -93,18 +93,19 @@
                                         class="link-offset-2 link-underline link-underline-opacity-0"
                                         data-bs-toggle="modal" data-bs-target="#UnivModal"
                                         wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
-                                        <div class="text-dark d-inline-block text-truncate" style="max-width: 150px;">
+                                        <div class="text-dark d-inline-block text-truncate pb-2"
+                                            style="max-width: 150px;">
                                             {{ $pengaduan->isi_pengaduan }}</div><br>
-                                        Lihat Selengkapnya
+                                        <small class="btn btn-outline-primary btn-sm" style="font-size: 0.7rem;"> Lihat Selengkapnya </small>
                                     </a>
                                 @else
                                     <a href="javascript:void(0)"
                                         class="link-offset-2 link-underline link-underline-opacity-0"
                                         data-bs-toggle="modal" data-bs-target="#UnivModal"
                                         wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
-                                        <div class="text-dark d-inline-block">
+                                        <div class="text-dark d-inline-block pb-2">
                                             {{ $pengaduan->isi_pengaduan }}</div><br>
-                                        Lihat Selengkapnya
+                                        <small class="btn btn-outline-primary btn-sm" style="font-size: 0.7rem;"> Lihat Selengkapnya </small>
                                     </a>
                                 @endif
                             </td>
@@ -149,7 +150,7 @@
                                     @endphp
 
                                     <a href="javascript:void(0)"
-                                        class="btn btn-outline-{{ $isLinked ? 'warning' : 'danger' }} border-0 btn-sm"
+                                        class="btn btn-outline-{{ $isLinked ? 'warning' : 'danger' }} btn-sm"
                                         data-bs-toggle="modal" data-bs-target="#ModalUnit"
                                         wire:click='setidpengaduan({{ $pengaduan->id }})'>
                                         <i class="fa-solid fa-share"></i> <br> Teruskan Ke Unit
@@ -161,7 +162,7 @@
                                         @endphp
                                         @if ($linked->unitkerja->id == auth()->user()->id)
                                             <a href="{{ route('admin.tindaklanjut', $pengaduan->id) }}"
-                                                class="btn btn-outline-primary border-0 btn-sm">
+                                                class="btn btn-outline-primary btn-sm">
                                                 <i class="fa-regular fa-note-sticky"></i> <br>
                                                 @if ($tindaklanjutExists)
                                                     @if ($linked->pengaduan->tindaklanjuts->contains('user_id', auth()->user()->id))

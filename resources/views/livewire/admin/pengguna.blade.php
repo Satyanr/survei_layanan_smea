@@ -50,21 +50,21 @@
                                 <td>{{ $pengguna->penanggung_jawab }}</td>
                                 <td>
                                     <div class="btn-group dropend">
-                                        <button type="button" class="btn btn-outline-dark dropdown-toggle border-0"
+                                        <button type="button" class="btn btn-outline-dark border-0"
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="fa-solid fa-ellipsis-vertical"></i>
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="javascript:void(0)"
                                                     data-bs-toggle="modal" data-bs-target="#ModalAkun"
-                                                    wire:click='edit({{ $pengguna->id }})'>Edit</a>
+                                                    wire:click='edit({{ $pengguna->id }})'><i class="fa-solid fa-pencil"></i> Edit</a>
                                             </li>
                                             <li>
                                                 <a class="dropdown-item text-success"
-                                                    href="{{ route('admin.impersonate', $pengguna) }}">Masuk</a>
+                                                    href="{{ route('admin.impersonate', $pengguna) }}"><i class="fa-solid fa-right-to-bracket"></i> Masuk</a>
                                             </li>
                                             <li><a class="dropdown-item text-danger" href="javascript:void(0)"
-                                                    wire:click.prevent="delete({{ $pengguna->id }})">Hapus</a></li>
+                                                    wire:click.prevent="delete({{ $pengguna->id }})"><i class="fa-solid fa-trash"></i> Hapus</a></li>
 
                                         </ul>
                                     </div>

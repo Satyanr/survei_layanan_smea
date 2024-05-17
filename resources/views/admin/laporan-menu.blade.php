@@ -7,25 +7,21 @@
     <div class="container mt-5 justify-content-center">
         <div class="shadow p-3 mb-5 bg-body-tertiary rounded-4">
             @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'SuperAdmin')
-                <div class="row mb-3">
-                    <div class="col">
+                <div class="row mb-3 ps-3">
+                    <div class="col-auto card">
                         <form action="{{ route('laporan-pengaduan-masyarakat') }}" method="GET">
-                            <div class="row text-center py-3">
+                            <div class="row py-3">
                                 <div class="col">
-                                    <div class="d-flex justify-content-end">
-                                        <h5 class="w-50">Cetak Laporan</h5>
-                                    </div>
+                                    <h5>Cetak Laporan</h5>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col d-flex justify-content-end">
-                                    <div class="input-group mb-3 w-50">
-                                        <input type="date" class="form-control" name="start" id="start" required>
-                                        <span class="input-group-text">to</span>
-                                        <input type="date" class="form-control" name="end" id="end" required>
+                                <div class="input-group mb-3">
+                                    <input type="date" class="form-control" name="start" id="start" required>
+                                    <span class="input-group-text">sampai</span>
+                                    <input type="date" class="form-control" name="end" id="end" required>
 
-                                        <button class="btn btn-primary" type="submit">Unduh</button>
-                                    </div>
+                                    <button class="btn btn-primary" type="submit">Unduh</button>
                                 </div>
                             </div>
                         </form>
@@ -50,7 +46,7 @@
                     <a href="{{ route('admin.daftarpengaduan', 'Permintaan Informasi') }}" style="text-decoration: none;">
                         <div class="card border-1 rounded-2  d-flex flex-column h-100">
                             <div class="card-body">
-                                <div class="row h-75 p-5">
+                                <div class="row h-75 pb-3">
                                     <div class="col">
                                         <img src="/img/PInformasi.png" class="img-fluid" alt="...">
                                     </div>
@@ -95,7 +91,7 @@
                     <a href="{{ route('admin.daftarpengaduan', 'Saran') }}" style="text-decoration: none;">
                         <div class="card border-1 rounded-2  d-flex flex-column h-100">
                             <div class="card-body">
-                                <div class="row h-75 p-5">
+                                <div class="row h-75 pb-3">
                                     <div class="col">
                                         <img src="/img/Saran.png" class="img-fluid" alt="...">
                                     </div>
@@ -137,7 +133,7 @@
                     <a href="{{ route('admin.daftarpengaduan', 'Pengaduan') }}" style="text-decoration: none;">
                         <div class="card border-1 rounded-2  d-flex flex-column h-100">
                             <div class="card-body">
-                                <div class="row h-75 p-5">
+                                <div class="row h-75 pb-3">
                                     <div class="col">
                                         <img src="/img/Pengaduan.png" class="img-fluid" alt="...">
                                     </div>
@@ -182,7 +178,7 @@
                     <a href="{{ route('admin.daftarpengaduan', 'Kerusakan') }}" style="text-decoration: none;">
                         <div class="card border-1 rounded-2  d-flex flex-column h-100">
                             <div class="card-body">
-                                <div class="row h-75 p-5">
+                                <div class="row h-75 pb-3">
                                     <div class="col">
                                         <img src="/img/PInformasi.png" class="img-fluid" alt="...">
                                     </div>

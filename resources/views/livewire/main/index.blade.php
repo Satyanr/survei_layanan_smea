@@ -19,63 +19,68 @@
             <form wire:submit.prevent="store" enctype="multipart/form-data">
                 <div class="row text-center">
                     <div class="col">
-                        <label class="form-label"><strong> Perihal </strong></label>
+                        <label class="form-label fs-5"><strong> Perihal </strong></label>
                     </div>
                 </div>
                 <div class="row text-center pb-5 fs-5">
-                    <div class="col">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input @error('tentang') is-invalid @enderror" type="radio"
-                                id="pengaduan" value="Pengaduan" wire:click="tentoff" wire:model='tentang'>
-                            <label class="form-check-label" for="Pengaduan">Pengaduan</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input @error('tentang') is-invalid @enderror" type="radio"
-                                id="Informasi" value="Permintaan Informasi" wire:click="tentoff" wire:model='tentang'>
-                            <label class="form-check-label" for="Informasi">Permintaan Informasi</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input @error('tentang') is-invalid @enderror" type="radio"
-                                id="Saran" value="Saran" wire:click="tentoff" wire:model='tentang'>
-                            <label class="form-check-label" for="Saran">Saran</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input @error('tentang') is-invalid @enderror" type="radio"
-                                id="kerusakan" value="Kerusakan" wire:click="tenton" wire:model='tentang'>
-                            <label class="form-check-label" for="kerusakan">Kerusakan</label>
+                    <div class="col d-flex justify-content-center">
+                        <div class="form-control w-50">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input @error('tentang') is-invalid @enderror" type="radio"
+                                    id="pengaduan" value="Pengaduan" wire:click="tentoff" wire:model='tentang'>
+                                <label class="form-check-label" for="Pengaduan">Pengaduan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input @error('tentang') is-invalid @enderror" type="radio"
+                                    id="Informasi" value="Permintaan Informasi" wire:click="tentoff"
+                                    wire:model='tentang'>
+                                <label class="form-check-label" for="Informasi">Permintaan Informasi</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input @error('tentang') is-invalid @enderror" type="radio"
+                                    id="Saran" value="Saran" wire:click="tentoff" wire:model='tentang'>
+                                <label class="form-check-label" for="Saran">Saran</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input @error('tentang') is-invalid @enderror" type="radio"
+                                    id="kerusakan" value="Kerusakan" wire:click="tenton" wire:model='tentang'>
+                                <label class="form-check-label" for="kerusakan">Kerusakan</label>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row text-center">
                     <div class="col">
-                        <label class="form-label"><strong> Identitas </strong></label>
+                        <label class="form-label fs-5"><strong> Identitas </strong></label>
                     </div>
                 </div>
                 <div class="row text-center pb-5 fs-5">
-                    <div class="col">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input @error('identitas_pengaduan') is-invalid @enderror"
-                                type="radio" name="inlineRadioOptions" id="lengkap" value="Lengkap"
-                                wire:model='identitas_pengaduan' wire:click="idon">
-                            <label class="form-check-label" for="lengkap">Lengkap</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input @error('identitas_pengaduan') is-invalid @enderror"
-                                type="radio" name="inlineRadioOptions" id="Siswa" value="Siswa"
-                                wire:model='identitas_pengaduan' wire:click='idoff'>
-                            <label class="form-check-label" for="Siswa">Siswa</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input @error('identitas_pengaduan') is-invalid @enderror"
-                                type="radio" name="inlineRadioOptions" id="Tamu" value="Tamu"
-                                wire:model='identitas_pengaduan' wire:click='idoff'>
-                            <label class="form-check-label" for="Tamu">Tamu</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input @error('identitas_pengaduan') is-invalid @enderror"
-                                type="radio" name="inlineRadioOptions" id="PenggunaFasilitas"
-                                value="Pengguna Fasilitas" wire:model='identitas_pengaduan' wire:click='idoff'>
-                            <label class="form-check-label" for="PenggunaFasilitas">Pengguna Fasilitas</label>
+                    <div class="col d-flex justify-content-center">
+                        <div class="form-control w-50">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input @error('identitas_pengaduan') is-invalid @enderror"
+                                    type="radio" name="inlineRadioOptions" id="lengkap" value="Lengkap"
+                                    wire:model='identitas_pengaduan' wire:click="idon">
+                                <label class="form-check-label" for="lengkap">Lengkap</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input @error('identitas_pengaduan') is-invalid @enderror"
+                                    type="radio" name="inlineRadioOptions" id="Siswa" value="Siswa"
+                                    wire:model='identitas_pengaduan' wire:click='idoff'>
+                                <label class="form-check-label" for="Siswa">Siswa</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input @error('identitas_pengaduan') is-invalid @enderror"
+                                    type="radio" name="inlineRadioOptions" id="Tamu" value="Tamu"
+                                    wire:model='identitas_pengaduan' wire:click='idoff'>
+                                <label class="form-check-label" for="Tamu">Tamu</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input @error('identitas_pengaduan') is-invalid @enderror"
+                                    type="radio" name="inlineRadioOptions" id="PenggunaFasilitas"
+                                    value="Pengguna Fasilitas" wire:model='identitas_pengaduan' wire:click='idoff'>
+                                <label class="form-check-label" for="PenggunaFasilitas">Pengguna Fasilitas</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -265,7 +270,7 @@
             </div>
         </div>
         @if ($tentangon)
-            <div class="row my-3">
+            <div class="row my-3 ps-4">
                 <div class="col">
                     <div class="mb-3">
                         <label class="form-label"><strong> Tempat </strong></label>
@@ -280,7 +285,7 @@
                 </div>
             </div>
         @endif
-        <div class="row">
+        <div class="row ps-4">
             <div class="col">
                 <label class="form-label"><strong> Isi Keperluan Anda </strong></label>
                 <textarea wire:model='isi_pengaduan' class="form-control @error('isi_pengaduan') is-invalid @enderror"

@@ -13,8 +13,7 @@
             </div>
             <div class="col">
                 <div class="shadow p-3 mb-5 bg-body-tertiary rounded-4">
-                    <h4 class="text-center">Keterangan</h4>
-                    <hr class="w-75 m-auto pb-3 border-3">
+                    <h4 class="text-center mb-4">Keterangan</h4>
                     <div class="row justify-content-center">
                         <div class="col px-3">
                             <ul class="list-group list-group-flush">
