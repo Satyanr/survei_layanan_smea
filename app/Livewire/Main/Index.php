@@ -8,10 +8,12 @@ use App\Models\Pengaduan;
 use App\Models\SubKategori;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Index extends Component
 {
     use WithFileUploads;
+    use LivewireAlert;
     public $tanggal_pengaduan, $identitas_pengaduan, $nama_pengadu, $no_telp_pengadu, $email_pengadu, $isi_pengaduan, $jenis_layanan, $bukti_foto, $kategori, $subkategori, $tempat, $tentang, $type, $kode_kategori;
     public $identitason = false;
     public $subkaton = false,
@@ -312,6 +314,11 @@ class Index extends Component
         $this->tentangon = false;
         $this->subkaton = false;
         $this->resetInput();
-        session()->flash('message', 'Pengaduan berhasil dikirim');
+        $this->alert('success', 'Berhasil Ditambahkan!', [
+            'position' => 'center',
+            'timer' => 3000,
+            'toast' => false,
+            'timerProgressBar' => true,
+        ]);
     }
 }
