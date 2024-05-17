@@ -40,24 +40,24 @@
     <div class="row">
         <div class="col table-responsive">
             <table class="table table-striped table-hover table-sm" style="font-size: 0.9rem;">
-                <thead>
+                <thead class="text-center">
                     <tr>
-                        <th>Tanggal Pengaduan</th>
-                        <th>Identitas Pengadu</th>
-                        <th>Kategori Pengaduan</th>
-                        <th>Isi Pengaduan</th>
-                        <th>Informasi Tambahan</th>
-                        <th>Tindakan</th>
+                        <th class="align-middle bg-secondary-subtle">Tanggal Pengaduan</th>
+                        <th class="align-middle bg-secondary-subtle">Identitas Pengadu</th>
+                        <th class="align-middle bg-secondary-subtle">Kategori Pengaduan</th>
+                        <th class="align-middle bg-secondary-subtle">Isi Pengaduan</th>
+                        <th class="align-middle bg-secondary-subtle">Informasi Tambahan</th>
+                        <th class="align-middle bg-secondary-subtle">Tindakan</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($pengaduans as $pengaduan)
                         <tr>
 
-                            <td>{{ $pengaduan->tanggal_pengaduan }}</td>
-                            <td>
+                            <td class="align-middle">{{ $pengaduan->tanggal_pengaduan }}</td>
+                            <td class="align-middle">
                                 @if ($pengaduan->identitas_pengaduan == 'Lengkap')
-                                    <a href="javascript:void(0)"
+                                    {{-- <a href="javascript:void(0)"
                                         class="link-offset-2 link-underline link-underline-opacity-0 text-dark"
                                         data-bs-toggle="modal" data-bs-target="#UnivModal"
                                         wire:click='showIdentitas({{ $pengaduan->id }})'>
@@ -65,12 +65,17 @@
                                         <br>
                                         <small class="btn btn-outline-danger btn-sm mt-2"
                                             style="font-size: 0.7rem;">Informasi Lengkap</small>
+                                    </a> --}}
+                                    <a href="javascript:void(0)" class="btn btn-outline-primary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#UnivModal"
+                                        wire:click='showIdentitas({{ $pengaduan->id }})'>
+                                        {{ $pengaduan->identitas_pengaduan }}
                                     </a>
                                 @else
                                     {{ $pengaduan->identitas_pengaduan }}
                                 @endif
                             </td>
-                            <td>
+                            <td class="align-middle">
                                 <div class="row">
                                     <div class="col">
                                         {{ $pengaduan->jenis_layanan }}
@@ -87,9 +92,9 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>
+                            <td class="align-middle">
                                 @if (strlen($pengaduan->isi_pengaduan) > 20)
-                                    <a href="javascript:void(0)"
+                                    {{-- <a href="javascript:void(0)"
                                         class="link-offset-2 link-underline link-underline-opacity-0"
                                         data-bs-toggle="modal" data-bs-target="#UnivModal"
                                         wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
@@ -98,9 +103,15 @@
                                             {{ $pengaduan->isi_pengaduan }}</div><br>
                                         <small class="btn btn-outline-primary btn-sm" style="font-size: 0.7rem;"> Lihat
                                             Selengkapnya </small>
+                                    </a> --}}
+                                    <a href="javascript:void(0)" class="btn btn-outline-primary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#UnivModal"
+                                        wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
+                                        <div class="d-inline-block text-truncate" style="max-width: 150px;">
+                                            {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
                                 @else
-                                    <a href="javascript:void(0)"
+                                    {{-- <a href="javascript:void(0)"
                                         class="link-offset-2 link-underline link-underline-opacity-0"
                                         data-bs-toggle="modal" data-bs-target="#UnivModal"
                                         wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
@@ -108,10 +119,16 @@
                                             {{ $pengaduan->isi_pengaduan }}</div><br>
                                         <small class="btn btn-outline-primary btn-sm" style="font-size: 0.7rem;"> Lihat
                                             Selengkapnya </small>
+                                    </a> --}}
+                                    <a href="javascript:void(0)" class="btn btn-outline-primary btn-sm"
+                                        data-bs-toggle="modal" data-bs-target="#UnivModal"
+                                        wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
+                                        <div class="d-inline-block" style="max-width: 150px;">
+                                            {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
                                 @endif
                             </td>
-                            <td>
+                            <td class="align-middle">
                                 <div class="row text-center">
                                     <div class="col">
                                         @if ($pengaduan->tindaklanjuts->count() != 0)
@@ -151,7 +168,8 @@
                                         )->exists();
                                     @endphp
 
-                                    <a href="javascript:void(0)" class="btn btn-outline-warning btn-sm"
+                                    <a href="javascript:void(0)"
+                                        class="btn btn-outline-{{ $isLinked ? 'success' : 'danger' }} btn-sm"
                                         data-bs-toggle="modal" data-bs-target="#ModalUnit"
                                         wire:click='setidpengaduan({{ $pengaduan->id }})'>
                                         @if ($isLinked)
