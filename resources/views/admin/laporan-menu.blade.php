@@ -8,7 +8,7 @@
         <div class="shadow p-3 mb-5 bg-body-tertiary rounded-4">
             @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'SuperAdmin')
                 <div class="row mb-3 ps-3">
-                    <div class="col-auto card">
+                    <div class="col bg-white">
                         <form action="{{ route('laporan-pengaduan-masyarakat') }}" method="GET">
                             <div class="row py-3">
                                 <div class="col">
@@ -16,7 +16,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="input-group mb-3">
+                                <div class="input-group">
                                     <input type="date" class="form-control" name="start" id="start" required>
                                     <span class="input-group-text">sampai</span>
                                     <input type="date" class="form-control" name="end" id="end" required>
@@ -26,18 +26,9 @@
                             </div>
                         </form>
                     </div>
-                    {{-- <div class="col justify-content-center d-flex">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#LaporanPengaduanModal">
-                        Laporan Pengaduan Masyarakat <i class="fa-solid fa-file-word"></i>
-                    </button>
-                </div>
-                <div class="col justify-content-center d-flex">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#LaporanMonevModal">
-                        Laporan Tindak Lanjut <i class="fa-solid fa-file-word"></i>
-                    </button>
-                </div> --}}
+                    <div class="col-auto me-3 bg-white">
+                        <img src="/img/lprnpage_asset.png" alt="" width="300">
+                    </div>
                 </div>
             @endif
 

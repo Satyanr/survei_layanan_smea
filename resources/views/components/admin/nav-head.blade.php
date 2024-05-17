@@ -110,7 +110,11 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                Laporan
+                                @if (auth()->user())
+                                    Laporan
+                                @else
+                                    Informasi
+                                @endif
                             </div>
                         </div>
                     </a>

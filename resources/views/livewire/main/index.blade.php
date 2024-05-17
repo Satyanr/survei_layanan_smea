@@ -1,5 +1,5 @@
 <div>
-    <div class="row text-center mb-5">
+    <div class="row text-center mb-4">
         <div class="col">
             <h2>Lengkapi Data Keperluan Anda</h2>
         </div>
@@ -285,7 +285,7 @@
                 </div>
             </div>
         @endif
-        <div class="row ps-4">
+        <div class="row m-auto">
             <div class="col">
                 <label class="form-label"><strong> Isi Keperluan Anda </strong></label>
                 <textarea wire:model='isi_pengaduan' class="form-control @error('isi_pengaduan') is-invalid @enderror"

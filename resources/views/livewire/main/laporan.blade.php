@@ -1,5 +1,5 @@
 <div>
-    <div class="row justify-content-between mb-5">
+    <div class="row justify-content-between mb-3">
         <div class="col-auto ms-3">
             <h3>Permintaan Informasi</h3>
         </div>

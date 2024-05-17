@@ -1,5 +1,5 @@
 <div>
-    <div class="row justify-content-between mb-5">
+    <div class="row justify-content-between mb-3">
         <div class="col-auto ms-3">
             <h3>Laporan</h3>
         </div>
@@ -96,7 +96,8 @@
                                         <div class="text-dark d-inline-block text-truncate pb-2"
                                             style="max-width: 150px;">
                                             {{ $pengaduan->isi_pengaduan }}</div><br>
-                                        <small class="btn btn-outline-primary btn-sm" style="font-size: 0.7rem;"> Lihat Selengkapnya </small>
+                                        <small class="btn btn-outline-primary btn-sm" style="font-size: 0.7rem;"> Lihat
+                                            Selengkapnya </small>
                                     </a>
                                 @else
                                     <a href="javascript:void(0)"
@@ -105,7 +106,8 @@
                                         wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
                                         <div class="text-dark d-inline-block pb-2">
                                             {{ $pengaduan->isi_pengaduan }}</div><br>
-                                        <small class="btn btn-outline-primary btn-sm" style="font-size: 0.7rem;"> Lihat Selengkapnya </small>
+                                        <small class="btn btn-outline-primary btn-sm" style="font-size: 0.7rem;"> Lihat
+                                            Selengkapnya </small>
                                     </a>
                                 @endif
                             </td>
@@ -140,7 +142,7 @@
                                     @endif
                                 </div>
                             </td>
-                            <td>
+                            <td align="center">
                                 @if (auth()->user()->role != 'UnitKerja')
                                     @php
                                         $isLinked = \App\Models\PengaduanLink::where(
@@ -149,11 +151,14 @@
                                         )->exists();
                                     @endphp
 
-                                    <a href="javascript:void(0)"
-                                        class="btn btn-outline-{{ $isLinked ? 'warning' : 'danger' }} btn-sm"
+                                    <a href="javascript:void(0)" class="btn btn-outline-warning btn-sm"
                                         data-bs-toggle="modal" data-bs-target="#ModalUnit"
                                         wire:click='setidpengaduan({{ $pengaduan->id }})'>
-                                        <i class="fa-solid fa-share"></i> <br> Teruskan Ke Unit
+                                        @if ($isLinked)
+                                            <i class="fa-regular fa-circle-check"></i> <br> Sudah di teruskan
+                                        @else
+                                            <i class="fa-solid fa-share"></i> <br> Teruskan Ke Unit
+                                        @endif
                                     </a>
                                 @else
                                     @foreach ($pengaduan->pengaduanLinks as $linked)
