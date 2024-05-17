@@ -64,21 +64,19 @@
                             <td>
                                 @if (strlen($pengaduan->isi_pengaduan) > 20)
                                     <a href="javascript:void(0)"
-                                        class="link-offset-2 link-underline link-underline-opacity-0"
+                                        class="btn btn-outline-primary d-flex flex-column btn-sm"
                                         data-bs-toggle="modal" data-bs-target="#UnivModal"
                                         wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
                                         <div class="text-dark d-inline-block text-truncate" style="max-width: 150px;">
-                                            {{ $pengaduan->isi_pengaduan }}</div><br>
-                                        Lihat Selengkapnya
+                                            {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
                                 @else
                                     <a href="javascript:void(0)"
-                                        class="link-offset-2 link-underline link-underline-opacity-0"
+                                        class="btn btn-outline-primary d-flex flex-column btn-sm"
                                         data-bs-toggle="modal" data-bs-target="#UnivModal"
                                         wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
                                         <div class="text-dark d-inline-block">
-                                            {{ $pengaduan->isi_pengaduan }}</div><br>
-                                        Lihat Selengkapnya
+                                            {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
                                 @endif
                             </td>

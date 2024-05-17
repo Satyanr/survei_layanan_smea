@@ -104,9 +104,9 @@
                                         <small class="btn btn-outline-primary btn-sm" style="font-size: 0.7rem;"> Lihat
                                             Selengkapnya </small>
                                     </a> --}}
-                                    <a href="javascript:void(0)" class="btn btn-outline-primary btn-sm"
-                                        data-bs-toggle="modal" data-bs-target="#UnivModal"
-                                        wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
+                                    <a href="javascript:void(0)"
+                                        class="btn btn-outline-primary d-flex flex-column btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#UnivModal" wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
                                         <div class="d-inline-block text-truncate" style="max-width: 150px;">
                                             {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
@@ -120,8 +120,9 @@
                                         <small class="btn btn-outline-primary btn-sm" style="font-size: 0.7rem;"> Lihat
                                             Selengkapnya </small>
                                     </a> --}}
-                                    <a href="javascript:void(0)" class="btn btn-outline-primary btn-sm"
-                                        data-bs-toggle="modal" data-bs-target="#UnivModal"
+                                    <a href="javascript:void(0)"
+                                        class="btn btn-outline-primary d-flex flex-column btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#UnivModal"
                                         wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
                                         <div class="d-inline-block" style="max-width: 150px;">
                                             {{ $pengaduan->isi_pengaduan }}</div>
@@ -159,7 +160,7 @@
                                     @endif
                                 </div>
                             </td>
-                            <td align="center">
+                            <td class="align-middle">
                                 @if (auth()->user()->role != 'UnitKerja')
                                     @php
                                         $isLinked = \App\Models\PengaduanLink::where(
@@ -169,14 +170,16 @@
                                     @endphp
 
                                     <a href="javascript:void(0)"
-                                        class="btn btn-outline-{{ $isLinked ? 'success' : 'danger' }} btn-sm"
+                                        class="btn btn-outline-{{ $isLinked ? 'success' : 'danger' }} d-flex flex-column btn-sm"
                                         data-bs-toggle="modal" data-bs-target="#ModalUnit"
                                         wire:click='setidpengaduan({{ $pengaduan->id }})'>
-                                        @if ($isLinked)
-                                            <i class="fa-regular fa-circle-check"></i> <br> Sudah di teruskan
-                                        @else
-                                            <i class="fa-solid fa-share"></i> <br> Teruskan Ke Unit
-                                        @endif
+                                        <span class="w-100 h-100">
+                                            @if ($isLinked)
+                                                <i class="fa-regular fa-circle-check"></i> <br> Sudah di teruskan
+                                            @else
+                                                <i class="fa-solid fa-share"></i> <br> Teruskan Ke Unit
+                                            @endif
+                                        </span>
                                     </a>
                                 @else
                                     @foreach ($pengaduan->pengaduanLinks as $linked)

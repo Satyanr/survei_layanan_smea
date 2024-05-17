@@ -50,7 +50,7 @@
                                 <td>{{ $pengguna->penanggung_jawab }}</td>
                                 <td>
                                     <div class="btn-group dropend">
-                                        <button type="button" class="btn btn-outline-dark border-0"
+                                        <button type="button" class="border-0 bg-transparent"
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="fa-solid fa-ellipsis-vertical"></i>
                                         </button>

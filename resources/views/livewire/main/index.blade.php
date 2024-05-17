@@ -19,10 +19,17 @@
             <form wire:submit.prevent="store" enctype="multipart/form-data">
                 <div class="row text-center">
                     <div class="col">
-                        <label class="form-label fs-5"><strong> Perihal </strong></label>
+                        <hr>
+                    </div>
+                    <div class="col-auto">
+                        <label class="form-label bg-secondary p-2 rounded-pill bg-opacity-10"><strong> Perihal
+                            </strong></label>
+                    </div>
+                    <div class="col">
+                        <hr>
                     </div>
                 </div>
-                <div class="row text-center pb-5 fs-5">
+                <div class="row text-center pb-5 mt-3 fs-5">
                     <div class="col d-flex justify-content-center">
                         <div class="form-control p-3 w-75">
                             <div class="form-check form-check-inline">
@@ -51,10 +58,17 @@
                 </div>
                 <div class="row text-center">
                     <div class="col">
-                        <label class="form-label fs-5"><strong> Identitas </strong></label>
+                        <hr>
+                    </div>
+                    <div class="col-auto">
+                        <label
+                            class="form-label bg-secondary p-2 rounded-pill bg-opacity-10"><strong>Identitas</strong></label>
+                    </div>
+                    <div class="col">
+                        <hr>
                     </div>
                 </div>
-                <div class="row text-center pb-5 fs-5">
+                <div class="row text-center pb-5 mt-3 fs-5">
                     <div class="col d-flex justify-content-center">
                         <div class="form-control p-3 w-75">
                             <div class="form-check form-check-inline">

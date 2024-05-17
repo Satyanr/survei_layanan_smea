@@ -1,6 +1,13 @@
 @extends('layouts.admin')
 
 @push('css')
+    <style>
+        .custom-badge-saran {
+            top: 0;
+            left: 80%;
+            transform: translate(-50%, 150%);
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -8,7 +15,7 @@
         <div class="shadow p-3 mb-5 bg-body-tertiary rounded-4">
             @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'SuperAdmin')
                 <div class="row mb-3 ps-3">
-                    <div class="col bg-white">
+                    <div class="col bg-white pb-3 me-3">
                         <form action="{{ route('laporan-pengaduan-masyarakat') }}" method="GET">
                             <div class="row py-3">
                                 <div class="col">
@@ -26,9 +33,6 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-auto me-3 bg-white">
-                        <img src="/img/lprnpage_asset.png" alt="" width="300">
-                    </div>
                 </div>
             @endif
 
@@ -44,7 +48,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <h5>
+                                        <h5 class="position-relative">
                                             @php
                                                 $pengaduansNotLinked = \App\Models\Pengaduan::notHaveLinked()
                                                     ->where('tentang', 'Permintaan Informasi')
@@ -59,19 +63,20 @@
                                                     ->NotHaveTindakLanjut()
                                                     ->get();
                                             @endphp
-                                            Permintaan Informasi
+                                            Permintaan <br>
+                                            Informasi
+                                            @if (auth()->user()->role == 'UnitKerja')
+                                                @if ($pengaduanBelumTindak->count() > 0)
+                                                    <span
+                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
+                                                @endif
+                                            @else
+                                                @if ($pengaduansNotLinked->count() > 0)
+                                                    <span
+                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
+                                                @endif
+                                            @endif
                                         </h5>
-                                        @if (auth()->user()->role == 'UnitKerja')
-                                            @if ($pengaduanBelumTindak->count() > 0)
-                                                <span
-                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
-                                            @endif
-                                        @else
-                                            @if ($pengaduansNotLinked->count() > 0)
-                                                <span
-                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
-                                            @endif
-                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +85,7 @@
                 </div>
                 <div class="col">
                     <a href="{{ route('admin.daftarpengaduan', 'Saran') }}" style="text-decoration: none;">
-                        <div class="card border-1 rounded-2  d-flex flex-column h-100">
+                        <div class="card border-1 rounded-2 d-flex flex-column h-100">
                             <div class="card-body">
                                 <div class="row h-75 pb-3">
                                     <div class="col">
@@ -89,7 +94,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <h5>
+                                        <h5 class="position-relative">
                                             @php
                                                 $pengaduansNotLinked = \App\Models\Pengaduan::notHaveLinked()
                                                     ->where('tentang', 'Saran')
@@ -102,18 +107,18 @@
                                                     ->get();
                                             @endphp
                                             Saran
+                                            @if (auth()->user()->role == 'UnitKerja')
+                                                @if ($pengaduanBelumTindak->count() > 0)
+                                                    <span
+                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
+                                                @endif
+                                            @else
+                                                @if ($pengaduansNotLinked->count() > 0)
+                                                    <span
+                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
+                                                @endif
+                                            @endif
                                         </h5>
-                                        @if (auth()->user()->role == 'UnitKerja')
-                                            @if ($pengaduanBelumTindak->count() > 0)
-                                                <span
-                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
-                                            @endif
-                                        @else
-                                            @if ($pengaduansNotLinked->count() > 0)
-                                                <span
-                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
-                                            @endif
-                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +136,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <h5>
+                                        <h5 class="position-relative">
                                             @php
                                                 $pengaduansNotLinked = \App\Models\Pengaduan::notHaveLinked()
                                                     ->where('tentang', 'Pengaduan')
@@ -147,18 +152,18 @@
                                                     ->get();
                                             @endphp
                                             Pengaduan
+                                            @if (auth()->user()->role == 'UnitKerja')
+                                                @if ($pengaduanBelumTindak->count() > 0)
+                                                    <span
+                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
+                                                @endif
+                                            @else
+                                                @if ($pengaduansNotLinked->count() > 0)
+                                                    <span
+                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
+                                                @endif
+                                            @endif
                                         </h5>
-                                        @if (auth()->user()->role == 'UnitKerja')
-                                            @if ($pengaduanBelumTindak->count() > 0)
-                                                <span
-                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
-                                            @endif
-                                        @else
-                                            @if ($pengaduansNotLinked->count() > 0)
-                                                <span
-                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
-                                            @endif
-                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +181,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <h5>
+                                        <h5 class="position-relative">
                                             @php
                                                 $pengaduansNotLinked = \App\Models\Pengaduan::notHaveLinked()
                                                     ->where('tentang', 'Kerusakan')
@@ -192,18 +197,18 @@
                                                     ->get();
                                             @endphp
                                             Kerusakan
+                                            @if (auth()->user()->role == 'UnitKerja')
+                                                @if ($pengaduanBelumTindak->count() > 0)
+                                                    <span
+                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
+                                                @endif
+                                            @else
+                                                @if ($pengaduansNotLinked->count() > 0)
+                                                    <span
+                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
+                                                @endif
+                                            @endif
                                         </h5>
-                                        @if (auth()->user()->role == 'UnitKerja')
-                                            @if ($pengaduanBelumTindak->count() > 0)
-                                                <span
-                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
-                                            @endif
-                                        @else
-                                            @if ($pengaduansNotLinked->count() > 0)
-                                                <span
-                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
-                                            @endif
-                                        @endif
                                     </div>
                                 </div>
                             </div>

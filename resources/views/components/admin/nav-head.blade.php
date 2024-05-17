@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top navbar-expand-lg" style="background-color: #2F5296 ">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ route('main.index') }}">
+        <a class="navbar-brand" href="{{ route('admin.index') }}">
             <img src="/favicon.png" alt="Logo" width="36" height="36">
             <span class="text-white">
                 Layanan SMKN 1 Ciamis
