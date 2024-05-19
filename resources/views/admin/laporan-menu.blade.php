@@ -16,19 +16,31 @@
             @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'SuperAdmin')
                 <div class="row mb-3 ps-3">
                     <div class="col bg-white pb-3 me-3">
-                        <form action="{{ route('laporan-pengaduan-masyarakat') }}" method="GET">
+                        <form action="{{ route('laporan-aduan') }}" method="GET">
                             <div class="row py-3">
                                 <div class="col">
                                     <h5>Cetak Laporan</h5>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="input-group">
-                                    <input type="date" class="form-control" name="start" id="start" required>
-                                    <span class="input-group-text">sampai</span>
-                                    <input type="date" class="form-control" name="end" id="end" required>
+                                <div class="col">
+                                    <label for="unit" class="form-label">Pilih Unit</label>
+                                    <select class="form-select" name="unit" id="unit">
+                                        <option value="" selected>Semua</option>
+                                        @foreach ($unit as $un)
+                                            <option value="{{ $un->id }}">{{ $un->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label class="form-label">Data Yang di Ambil</label>
+                                    <div class="input-group">
+                                        <input type="date" class="form-control" name="start" id="start" required>
+                                        <span class="input-group-text">sampai</span>
+                                        <input type="date" class="form-control" name="end" id="end" required>
 
-                                    <button class="btn btn-primary" type="submit">Unduh</button>
+                                        <button class="btn btn-primary" type="submit">Unduh</button>
+                                    </div>
                                 </div>
                             </div>
                         </form>

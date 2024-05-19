@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -34,6 +35,7 @@ class AdminController extends Controller
     public function menulaporan()
     {
         $pengaduans = \App\Models\Pengaduan::all();
-        return view('admin.laporan-menu', compact('pengaduans'));
+        $unit = User::where('role', 'UnitKerja')->get();
+        return view('admin.laporan-menu', compact('pengaduans', 'unit'));
     }
 }

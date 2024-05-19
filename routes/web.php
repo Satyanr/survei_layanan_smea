@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ImpersonateController;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,13 @@ Route::prefix('/admin')->group(function () {
             // Route::get('/laporan-tinjut', 'LaporanTinjut')->name('laporan-tinjut');
             // Route::get('/laporan-monev', 'LaporanMonev')->name('laporan-monev');
             Route::get('/laporan-pengaduan', 'LaporanPengaduanM')->name('laporan-pengaduan-masyarakat');
+        });
+    });
+    Route::controller(PDFController::class)->group(function () {
+        Route::prefix('pdf')->group(function () {
+            // Route::get('/laporan-tinjut', 'LaporanTinjut')->name('laporan-tinjut');
+            // Route::get('/laporan-monev', 'LaporanMonev')->name('laporan-monev');
+            Route::get('/laporan-pengaduan', 'aduan')->name('laporan-aduan');
         });
     });
 });
