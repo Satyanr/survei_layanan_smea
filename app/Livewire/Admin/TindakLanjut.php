@@ -55,7 +55,7 @@ class TindakLanjut extends Component
         ) {
             if ($this->bukti_foto) {
                 $this->validate(
-                    ['bukti_foto' => 'image|max:1024'], // 1MB Max
+                    ['bukti_foto' => 'image'], // 1MB Max
 
                     ['bukti_foto.image' => 'File harus berupa gambar', 'bukti_foto.max' => 'File tidak boleh lebih dari 1MB'],
                 );
