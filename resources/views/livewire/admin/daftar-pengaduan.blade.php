@@ -192,7 +192,7 @@
                                                 <i class="fa-regular fa-note-sticky"></i> <br>
                                                 @if ($tindaklanjutExists)
                                                     @if ($linked->pengaduan->tindaklanjuts->contains('user_id', auth()->user()->id))
-                                                        Edit Tindak Lanjut
+                                                        Edit Tindakan
                                                     @else
                                                         Tindak Lanjuti
                                                     @endif

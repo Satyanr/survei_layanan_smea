@@ -48,6 +48,11 @@
                         <div class="row justify-content-center">
                             <div class="col-auto">
                                 <input type="file" class="form-control" wire:model='bukti_foto'>
+                                @error('bukti_foto')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 <div wire:loading wire:target="bukti_foto">Uploading...</div>
                             </div>
                         </div>
