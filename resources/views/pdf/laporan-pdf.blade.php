@@ -67,7 +67,7 @@
                 <tr>
                     <td style="width: 5%">{{ $loop->iteration }}</td>
                     <td style="width: 10%">{{ $aduan->updated_at->format('d-m-y') }}</td>
-                    <td style="width: 15%">{{ $aduan->tempat }}</td>
+                    <td style="width: 15%" class="warptxt">{{ $aduan->tempat }}</td>
                     <td class="warptxt">{{ $aduan->isi_pengaduan }}</td>
                     <td style="width: 15%">{{ $aduan->kategori }}</td>
                     <td>
