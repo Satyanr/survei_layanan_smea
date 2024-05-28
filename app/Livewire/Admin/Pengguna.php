@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\PengaduanLink;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,7 +11,8 @@ class Pengguna extends Component
 {
     public $searchuser, $name, $email, $role, $password, $password_confirmation, $user_id, $kode_unit, $penjab, $nip;
     public $updateMode = false,
-        $unitMode = false;
+        $unitMode = false,
+        $insertMode = false;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     protected $paginationName = 'Page';
@@ -53,6 +55,11 @@ class Pengguna extends Component
         ]);
     }
 
+    public function forminput()
+    {
+        $this->resetInput();
+        $this->insertMode = true;
+    }
     public function store()
     {
         $this->validate([
@@ -88,6 +95,7 @@ class Pengguna extends Component
         $this->unitMode = false;
         session()->flash('message', 'Pengguna berhasil ditambahkan');
         $this->resetInput();
+        $this->insertMode = false;
     }
     public function edit($id)
     {
@@ -173,11 +181,13 @@ class Pengguna extends Component
     public function cancel()
     {
         $this->unitMode = false;
+        $this->insertMode = false;
         $this->updateMode = false;
         $this->resetInput();
     }
     public function delete($id)
     {
+        PengaduanLink::where('user_id', $id)->delete();
         User::find($id)->delete();
         session()->flash('message', 'Pengguna berhasil dihapus');
     }
