@@ -16,22 +16,107 @@ class PDFController extends Controller
     public function aduan(Request $request)
     {
         $unit = $request->input('unit');
+        $jenis = $request->input('jenis');
         $start = Carbon::createFromFormat('Y-m-d', $request->input('start'));
         $end = Carbon::createFromFormat('Y-m-d', $request->input('end'));
-        if ($unit != null) {
-            if ($start == $end) {
-                $aduan = Pengaduan::whereDate('pengaduans.created_at', $start)->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')->where('pengaduan_links.user_id', $unit)->get();
-            } else {
-                $aduan = Pengaduan::whereBetween('pengaduans.created_at', [$start, $end])
-                    ->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')
-                    ->where('pengaduan_links.user_id', $unit)
-                    ->get();
+        if ($jenis != null) {
+            if ($jenis === 'Belum') {
+                if ($unit != null) {
+                    if ($start == $end) {
+                        $aduan = Pengaduan::whereDate('pengaduans.created_at', $start)->notHaveTindakLanjut()->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')->where('pengaduan_links.user_id', $unit)->get();
+                    } else {
+                        $aduan = Pengaduan::whereBetween('pengaduans.created_at', [$start, $end])
+                            ->notHaveTindakLanjut()
+                            ->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')
+                            ->where('pengaduan_links.user_id', $unit)
+                            ->get();
+                    }
+                } elseif (auth()->user()->role == 'UnitKerja') {
+                    if ($start == $end) {
+                        $aduan = Pengaduan::whereDate('pengaduans.created_at', $start)
+                            ->notHaveTindakLanjut()
+                            ->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')
+                            ->where('pengaduan_links.user_id', auth()->user()->id)
+                            ->get();
+                    } else {
+                        $aduan = Pengaduan::whereBetween('pengaduans.created_at', [$start, $end])
+                            ->notHaveTindakLanjut()
+                            ->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')
+                            ->where('pengaduan_links.user_id', auth()->user()->id)
+                            ->get();
+                    }
+                } else {
+                    if ($start == $end) {
+                        $aduan = Pengaduan::whereDate('created_at', $start)->notHaveTindakLanjut()->get();
+                    } else {
+                        $aduan = Pengaduan::whereBetween('created_at', [$start, $end])
+                            ->notHaveTindakLanjut()
+                            ->get();
+                    }
+                }
+            }elseif ($jenis === 'Ditindak'){
+                if ($unit != null) {
+                    if ($start == $end) {
+                        $aduan = Pengaduan::whereDate('pengaduans.created_at', $start)->whereHas('tindaklanjuts')->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')->where('pengaduan_links.user_id', $unit)->get();
+                    } else {
+                        $aduan = Pengaduan::whereBetween('pengaduans.created_at', [$start, $end])
+                            ->whereHas('tindaklanjuts')
+                            ->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')
+                            ->where('pengaduan_links.user_id', $unit)
+                            ->get();
+                    }
+                } elseif (auth()->user()->role == 'UnitKerja') {
+                    if ($start == $end) {
+                        $aduan = Pengaduan::whereDate('pengaduans.created_at', $start)
+                            ->whereHas('tindaklanjuts')
+                            ->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')
+                            ->where('pengaduan_links.user_id', auth()->user()->id)
+                            ->get();
+                    } else {
+                        $aduan = Pengaduan::whereBetween('pengaduans.created_at', [$start, $end])
+                            ->whereHas('tindaklanjuts')
+                            ->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')
+                            ->where('pengaduan_links.user_id', auth()->user()->id)
+                            ->get();
+                    }
+                } else {
+                    if ($start == $end) {
+                        $aduan = Pengaduan::whereDate('created_at', $start)->whereHas('tindaklanjuts')->get();
+                    } else {
+                        $aduan = Pengaduan::whereBetween('created_at', [$start, $end])
+                            ->whereHas('tindaklanjuts')
+                            ->get();
+                    }
+                }
             }
         } else {
-            if ($start == $end) {
-                $aduan = Pengaduan::whereDate('created_at', $start)->get();
+            if ($unit != null) {
+                if ($start == $end) {
+                    $aduan = Pengaduan::whereDate('pengaduans.created_at', $start)->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')->where('pengaduan_links.user_id', $unit)->get();
+                } else {
+                    $aduan = Pengaduan::whereBetween('pengaduans.created_at', [$start, $end])
+                        ->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')
+                        ->where('pengaduan_links.user_id', $unit)
+                        ->get();
+                }
+            } elseif (auth()->user()->role == 'UnitKerja') {
+                if ($start == $end) {
+                    $aduan = Pengaduan::whereDate('pengaduans.created_at', $start)
+                        ->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')
+                        ->where('pengaduan_links.user_id', auth()->user()->id)
+                        ->get();
+                } else {
+                    $aduan = Pengaduan::whereBetween('pengaduans.created_at', [$start, $end])
+                        ->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')
+                        ->where('pengaduan_links.user_id', auth()->user()->id)
+                        ->get();
+                }
             } else {
-                $aduan = Pengaduan::whereBetween('created_at', [$start, $end])->get();
+                if ($start == $end) {
+                    $aduan = Pengaduan::whereDate('created_at', $start)->get();
+                } else {
+                    $aduan = Pengaduan::whereBetween('created_at', [$start, $end])->get();
+                }
             }
         }
         $data = [
