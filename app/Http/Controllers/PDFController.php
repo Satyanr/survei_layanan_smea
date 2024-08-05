@@ -126,6 +126,6 @@ class PDFController extends Controller
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('pdf.laporan-pdf', $data)->setPaper('a4', 'potrait');
 
-        return $pdf->stream();
+        return $pdf->download('Laporan Pengaduan ' . Carbon::now()->format('d-m-Y') . '.pdf');
     }
 }
