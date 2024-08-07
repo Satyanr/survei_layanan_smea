@@ -15,9 +15,9 @@ class Kategori extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     protected $paginationName;
-    public function changePagination($paginationName)
+    public function changePagination()
     {
-        $this->paginationName = $paginationName;
+        $this->paginationName = 'KategoriPage';
     }
     public function paginationView()
     {
@@ -27,11 +27,6 @@ class Kategori extends Component
     {
         $this->gotoPage(1, 'KategoriPage');
     }
-    public function resetSubKategoriPage()
-    {
-        $this->gotoPage(1, 'SubKategoriPage');
-    }
-
     public function resetInput()
     {
         $this->nama_kategori = '';
@@ -44,17 +39,12 @@ class Kategori extends Component
     public function render()
     {
         $currentKategoriPage = request()->input('KategoriPage', 1);
-        $currentSubKategoriPage = request()->input('SubKategoriPage', 1);
         return view('livewire.admin.kategori', [
             'kategoris' => KategoriModel::where('nama', 'LIKE', '%' . $this->searchkategori . '%')
                 ->orderBy('id', 'DESC')
                 ->paginate(6, ['*'], 'KategoriPage'),
-            'subkategoris' => SubKategori::where('nama', 'LIKE', '%' . $this->searchsubkategori . '%')
-                ->orderBy('id', 'DESC')
-                ->paginate(6, ['*'], 'SubKategoriPage'),
             'kategorisInput' => KategoriModel::all(),
             'currentKategoriPage' => $currentKategoriPage,
-            'currentSubKategoriPage' => $currentSubKategoriPage,
         ]);
     }
 
@@ -63,10 +53,12 @@ class Kategori extends Component
         $this->validate(
             [
                 'nama_kategori' => 'required',
+                'kode_kategori' => 'required',
                 // 'nama_layanan' => 'required',
             ],
             [
                 'nama_kategori.required' => 'Nama kategori tidak boleh kosong',
+                'kode_kategori.required' => 'Kode kategori tidak boleh kosong',
                 // 'nama_layanan.required' => 'Pilih Jenis Layanan',
             ],
         );
@@ -78,31 +70,31 @@ class Kategori extends Component
         session()->flash('message', 'Kategori berhasil ditambahkan');
         $this->resetInput();
     }
-    public function storeSubKategori()
-    {
-        $this->validate([
-            'nama_subkategori' => 'required',
-            'kategori_id' => 'required',
-        ]);
+    // public function storeSubKategori()
+    // {
+    //     $this->validate([
+    //         'nama_subkategori' => 'required',
+    //         'kategori_id' => 'required',
+    //     ]);
 
-        SubKategori::create([
-            'nama' => $this->nama_subkategori,
-            'kategori_id' => $this->kategori_id,
-            // 'kode_kategori' => $this->kode_subkategori,
-        ]);
+    //     SubKategori::create([
+    //         'nama' => $this->nama_subkategori,
+    //         'kategori_id' => $this->kategori_id,
+    //         // 'kode_kategori' => $this->kode_subkategori,
+    //     ]);
 
-        session()->flash('message', 'Subkategori berhasil ditambahkan');
-        $this->resetInput();
-    }
+    //     session()->flash('message', 'Subkategori berhasil ditambahkan');
+    //     $this->resetInput();
+    // }
 
     public function destroyKategori($id)
     {
         KategoriModel::find($id)->delete();
         session()->flash('message', 'Kategori berhasil dihapus');
     }
-    public function destroySubKategori($id)
-    {
-        SubKategori::find($id)->delete();
-        session()->flash('message', 'Subkategori berhasil dihapus');
-    }
+    // public function destroySubKategori($id)
+    // {
+    //     SubKategori::find($id)->delete();
+    //     session()->flash('message', 'Subkategori berhasil dihapus');
+    // }
 }

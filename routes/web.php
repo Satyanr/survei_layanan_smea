@@ -5,6 +5,7 @@ use App\Http\Controllers\LaporanWordController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ExcelExportController;
 use App\Http\Controllers\ImpersonateController;
 use App\Http\Controllers\PDFController;
 
@@ -56,11 +57,10 @@ Route::prefix('/admin')->group(function () {
         });
     });
     Route::controller(PDFController::class)->group(function () {
-        Route::prefix('pdf')->group(function () {
-            // Route::get('/laporan-tinjut', 'LaporanTinjut')->name('laporan-tinjut');
-            // Route::get('/laporan-monev', 'LaporanMonev')->name('laporan-monev');
-            Route::get('/laporan-pengaduan', 'aduan')->name('laporan-aduan');
-        });
+        Route::get('/laporan-pengaduan', 'aduan')->name('laporan-pengaduan');
+    });
+    Route::controller(ExcelExportController::class)->group(function () {
+        Route::get('/export-pengaduan', 'exportpengaduan')->name('export-pengaduan');
     });
 });
 

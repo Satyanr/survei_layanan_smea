@@ -16,10 +16,23 @@
             @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'SuperAdmin')
                 <div class="row mb-3 ps-3">
                     <div class="col bg-white pb-3 me-3">
-                        <form action="{{ route('laporan-aduan') }}" method="GET">
+                        <form id="laporanForm" method="GET">
                             <div class="row py-3">
                                 <div class="col">
                                     <h5>Cetak Laporan</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
@@ -47,7 +60,24 @@
                                         <span class="input-group-text">sampai</span>
                                         <input type="date" class="form-control" name="end" id="end" required>
 
-                                        <button class="btn btn-primary" type="submit">Unduh</button>
+                                        {{-- <button class="btn btn-primary" type="submit">Unduh</button> --}}
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary rounded-0 rounded-end dropdown-toggle"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                Unduh
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <button class="dropdown-item" type="button"
+                                                        onclick="setAction('export-pengaduan')">Unduh Excel</button>
+                                                </li>
+                                                <li>
+                                                    <button class="dropdown-item" type="button"
+                                                        onclick="setAction('laporan-pengaduan')">Unduh PDF</button>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +87,7 @@
             @else
                 <div class="row mb-3 ps-3">
                     <div class="col bg-white pb-3 me-3">
-                        <form action="{{ route('laporan-aduan') }}" method="GET">
+                        <form id="laporanForm" method="GET">
                             <div class="row py-3">
                                 <div class="col">
                                     <h5>Cetak Laporan</h5>
@@ -79,7 +109,23 @@
                                         <span class="input-group-text">sampai</span>
                                         <input type="date" class="form-control" name="end" id="end" required>
 
-                                        <button class="btn btn-primary" type="submit">Unduh</button>
+                                        {{-- <button class="btn btn-primary" type="submit">Unduh</button> --}}
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary rounded-0 rounded-end dropdown-toggle"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                Unduh
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <button class="dropdown-item" type="button"
+                                                        onclick="setAction('export-pengaduan')">Unduh Excel</button>
+                                                </li>
+                                                <li>
+                                                    <button class="dropdown-item" type="button"
+                                                        onclick="setAction('laporan-pengaduan')">Unduh PDF</button>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -270,57 +316,14 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal Laporan Pengaduan Masyarakat -->
-    {{-- <div class="modal fade" id="LaporanPengaduanModal" tabindex="-1" aria-labelledby="LaporanMonevModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="LaporanMonevModalLabel">Unduh Laporan Pengaduan Masyarakat</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('laporan-pengaduan-masyarakat') }}" method="GET">
-                        <div class="col">
-                            <div class="input-group mb-3">
-                                <input type="date" class="form-control" name="start" id="start" required>
-                                <span class="input-group-text">to</span>
-                                <input type="date" class="form-control" name="end" id="end" required>
-                                <button class="btn btn-primary" type="submit">Unduh</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-    <!-- Modal Laporan Monev -->
-    {{-- <div class="modal fade" id="LaporanMonevModal" tabindex="-1" aria-labelledby="LaporanMonevModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="LaporanMonevModalLabel">Unduh Laporan Monev</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('laporan-tinjut') }}" method="GET">
-                        <div class="col">
-                            <div class="input-group mb-3">
-                                <input type="date" class="form-control" name="start" id="start" required>
-                                <span class="input-group-text">to</span>
-                                <input type="date" class="form-control" name="end" id="end" required>
-                                <button class="btn btn-primary" type="submit">Unduh</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 @endsection
 
 @push('js')
+    <script>
+        function setAction(action) {
+            var form = document.getElementById('laporanForm');
+            form.action = action;
+            form.submit();
+        }
+    </script>
 @endpush

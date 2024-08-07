@@ -1,28 +1,36 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Exports;
 
 use Carbon\Carbon;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class PDFController extends Controller
+class PengaduanExport implements FromView
 {
-    public function __construct()
+    protected $request;
+
+    public function __construct(Request $request)
     {
-        $this->middleware('auth');
+        $this->request = $request;
     }
 
-    public function aduan(Request $request)
+    public function view(): View
     {
-        $request->validate([
+        $this->request->validate([
             'start' => 'required|date',
             'end' => 'required|date',
+        ],
+        [
+            'start.required' => 'Tanggal awal harus di isi',
+            'end.required' => 'Tanggal akhir harus di isi',
         ]);
-        $unit = $request->input('unit');
-        $jenis = $request->input('jenis');
-        $start = Carbon::createFromFormat('Y-m-d', $request->input('start'));
-        $end = Carbon::createFromFormat('Y-m-d', $request->input('end'));
+        $unit = $this->request->input('unit');
+        $jenis = $this->request->input('jenis');
+        $start = Carbon::createFromFormat('Y-m-d', $this->request->input('start'));
+        $end = Carbon::createFromFormat('Y-m-d', $this->request->input('end'));
         if ($jenis != null) {
             if ($jenis === 'Belum') {
                 if ($unit != null) {
@@ -58,7 +66,7 @@ class PDFController extends Controller
                             ->get();
                     }
                 }
-            }elseif ($jenis === 'Ditindak'){
+            } elseif ($jenis === 'Ditindak') {
                 if ($unit != null) {
                     if ($start == $end) {
                         $aduan = Pengaduan::whereDate('pengaduans.created_at', $start)->whereHas('tindaklanjuts')->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')->where('pengaduan_links.user_id', $unit)->get();
@@ -123,13 +131,9 @@ class PDFController extends Controller
                 }
             }
         }
-        $data = [
+
+        return view('excel.laporan-excel', [
             'pengaduan' => $aduan,
-        ];
-
-        $pdf = app('dompdf.wrapper');
-        $pdf->loadView('pdf.laporan-pdf', $data)->setPaper('a4', 'potrait');
-
-        return $pdf->download('Laporan Pengaduan ' . Carbon::now()->format('d-m-Y') . '.pdf');
+        ]);
     }
 }
