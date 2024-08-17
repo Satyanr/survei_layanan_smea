@@ -108,6 +108,12 @@ class Pengguna extends Component
         $this->kode_unit = $pengguna->kode_unit;
         $this->penjab = $pengguna->penanggung_jawab;
         $this->nip = $pengguna->nip;
+        
+        if ($this->role === 'UnitKerja'||$this->role == 0) {
+            $this->unitMode = true;
+        } else {
+            $this->unitMode = false;
+        }
     }
     public function update()
     {

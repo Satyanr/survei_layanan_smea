@@ -69,7 +69,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-12 col-sm">
                                         <label>Nama Unit</label>
                                         <input type="text"
                                             class="form-control @error('name') is-invalid
@@ -79,7 +79,7 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col">
+                                    <div class="col-12 col-sm">
                                         <label>Email</label>
                                         <input type="email"
                                             class="form-control @error('email') is-invalid
@@ -93,7 +93,7 @@
                             </div>
                             <div class="form-row mb-3">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-12 col-sm">
                                         @if ($updateMode)
                                             <label>Password Baru</label>
                                         @else
@@ -107,7 +107,7 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col">
+                                    <div class="col-12 col-sm">
                                         <label>Konfirmasi Password</label>
                                         <input type="password"
                                             class="form-control @error('password_confirmation') is-invalid
@@ -120,34 +120,21 @@
                                 </div>
                             </div>
                             @if ($unitMode)
-                                {{-- <div class="form-group">
-                            <label>Kode Unit</label>
-                            <input type="text"
-                                class="form-control @error('kode_unit') is-invalid
-                        @enderror"
-                                placeholder="Kode Unit" wire:model='kode_unit'>
-                            @error('kode_unit')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div> --}}
-
                                 <div class="form-group mb-3">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-12 col-sm">
                                             <label>Penanggung Jawab Unit</label>
                                             <input type="text"
-                                                class="form-control @error('penjab') is-invalid
-                        @enderror"
+                                                class="form-control @error('penjab') is-invalid @enderror"
                                                 placeholder="Penanggung Jawab Unit" wire:model='penjab'>
                                             @error('penjab')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col">
+                                        <div class="col-12 col-sm">
                                             <label>NIP</label>
                                             <input type="text"
-                                                class="form-control @error('nip') is-invalid
-                        @enderror"
+                                                class="form-control @error('nip') is-invalid @enderror"
                                                 placeholder="NIP" wire:model='nip'>
                                             @error('nip')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -176,26 +163,27 @@
             </div>
         @else
             <div class="row mb-5 justify-content-between">
-                <div class="col-auto ms-3">
+                <div class="col-auto">
                     <h3>Daftar Pengguna </h3>
                 </div>
-                <div class="col">
-                    <div class="input-group mb-3 w-75 m-auto">
+                <div class="col-12 col-sm d-flex align-items-center">
+                    <div class="input-group w-75 m-auto">
                         <span class="input-group-text" id="basic-addon1"><i
                                 class="fa-solid fa-magnifying-glass"></i></span>
                         <input type="text" class="form-control" placeholder="Cari Pengguna"
                             aria-label="Cari Pengguna" aria-describedby="basic-addon1" wire:model='searchuser'
                             wire:input='resetPageUser'>
                     </div>
+                    <div class="ms-2">
+
+                        <a href="javascript:void(0)" class="btn btn-primary border-0" wire:click='forminput()'>
+                            <b>
+                                <i class="fa-solid fa-user-plus"></i>
+                            </b>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-auto text-center">
-                    <a href="javascript:void(0)" class="btn btn-primary border-0" wire:click='forminput()'>
-                        <b>
-                            <i class="fa-solid fa-user-plus"></i>
-                            <small>Tambahkan</small>
-                        </b>
-                    </a>
-                </div>
+
             </div>
             @if (session()->has('message'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">

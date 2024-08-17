@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-auto">
                                     <label for="unit" class="form-label">Pilih Unit</label>
                                     <select class="form-select" name="unit" id="unit">
                                         <option value="" selected>Semua</option>
@@ -53,31 +53,31 @@
                                         <option value="Belum">Laporan Belum Ditindak</option>
                                     </select>
                                 </div>
-                                <div class="col">
+                                <div class="col-auto">
                                     <label class="form-label">Data Yang di Ambil</label>
                                     <div class="input-group">
                                         <input type="date" class="form-control" name="start" id="start" required>
                                         <span class="input-group-text">sampai</span>
                                         <input type="date" class="form-control" name="end" id="end" required>
-
-                                        {{-- <button class="btn btn-primary" type="submit">Unduh</button> --}}
-
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-primary rounded-0 rounded-end dropdown-toggle"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                Unduh
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <button class="dropdown-item" type="button"
-                                                        onclick="setAction('export-pengaduan')">Unduh Excel</button>
-                                                </li>
-                                                <li>
-                                                    <button class="dropdown-item" type="button"
-                                                        onclick="setAction('laporan-pengaduan')">Unduh PDF</button>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <label class="form-label">&nbsp;</label>
+                                    <div class="btn-group d-block">
+                                        <button type="button" class="btn btn-primary  dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Unduh
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <button class="dropdown-item" type="button"
+                                                    onclick="setAction('export-pengaduan')">Unduh Excel</button>
+                                            </li>
+                                            <li>
+                                                <button class="dropdown-item" type="button"
+                                                    onclick="setAction('laporan-pengaduan')">Unduh PDF</button>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-auto">
                                     <label for="jenis" class="form-label">Jenis Laporan</label>
                                     <select class="form-select" name="jenis" id="jenis">
                                         <option value="" selected>Semua</option>
@@ -102,30 +102,31 @@
                                         <option value="Belum">Laporan Belum Ditindak</option>
                                     </select>
                                 </div>
-                                <div class="col">
+                                <div class="col-auto">
                                     <label class="form-label">Data Yang di Ambil</label>
                                     <div class="input-group">
                                         <input type="date" class="form-control" name="start" id="start" required>
                                         <span class="input-group-text">sampai</span>
                                         <input type="date" class="form-control" name="end" id="end" required>
-
-                                        {{-- <button class="btn btn-primary" type="submit">Unduh</button> --}}
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-primary rounded-0 rounded-end dropdown-toggle"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                Unduh
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <button class="dropdown-item" type="button"
-                                                        onclick="setAction('export-pengaduan')">Unduh Excel</button>
-                                                </li>
-                                                <li>
-                                                    <button class="dropdown-item" type="button"
-                                                        onclick="setAction('laporan-pengaduan')">Unduh PDF</button>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <label class="form-label">&nbsp;</label>
+                                    <div class="btn-group d-block">
+                                        <button type="button" class="btn btn-primary  dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Unduh
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <button class="dropdown-item" type="button"
+                                                    onclick="setAction('export-pengaduan')">Unduh Excel</button>
+                                            </li>
+                                            <li>
+                                                <button class="dropdown-item" type="button"
+                                                    onclick="setAction('laporan-pengaduan')">Unduh PDF</button>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +136,7 @@
             @endif
 
             <div class="row text-center">
-                <div class="col">
+                <div class="col pb-3">
                     <a href="{{ route('admin.daftarpengaduan', 'Permintaan Informasi') }}" style="text-decoration: none;">
                         <div class="card border-1 rounded-2  d-flex flex-column h-100">
                             <div class="card-body">
@@ -166,12 +167,12 @@
                                             @if (auth()->user()->role == 'UnitKerja')
                                                 @if ($pengaduanBelumTindak->count() > 0)
                                                     <span
-                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
+                                                        class="position-absolute custom-badge-saran translate-middle-y badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
                                                 @endif
                                             @else
                                                 @if ($pengaduansNotLinked->count() > 0)
                                                     <span
-                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
+                                                        class="position-absolute custom-badge-saran translate-middle-y badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
                                                 @endif
                                             @endif
                                         </h5>
@@ -181,7 +182,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col">
+                <div class="col pb-3">
                     <a href="{{ route('admin.daftarpengaduan', 'Saran') }}" style="text-decoration: none;">
                         <div class="card border-1 rounded-2 d-flex flex-column h-100">
                             <div class="card-body">
@@ -208,12 +209,12 @@
                                             @if (auth()->user()->role == 'UnitKerja')
                                                 @if ($pengaduanBelumTindak->count() > 0)
                                                     <span
-                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
+                                                        class="position-absolute custom-badge-saran translate-middle-y badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
                                                 @endif
                                             @else
                                                 @if ($pengaduansNotLinked->count() > 0)
                                                     <span
-                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
+                                                        class="position-absolute custom-badge-saran translate-middle-y badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
                                                 @endif
                                             @endif
                                         </h5>
@@ -223,7 +224,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col">
+                <div class="col pb-3">
                     <a href="{{ route('admin.daftarpengaduan', 'Pengaduan') }}" style="text-decoration: none;">
                         <div class="card border-1 rounded-2  d-flex flex-column h-100">
                             <div class="card-body">
@@ -253,12 +254,12 @@
                                             @if (auth()->user()->role == 'UnitKerja')
                                                 @if ($pengaduanBelumTindak->count() > 0)
                                                     <span
-                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
+                                                        class="position-absolute custom-badge-saran translate-middle-y badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
                                                 @endif
                                             @else
                                                 @if ($pengaduansNotLinked->count() > 0)
                                                     <span
-                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
+                                                        class="position-absolute custom-badge-saran translate-middle-y badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
                                                 @endif
                                             @endif
                                         </h5>
@@ -268,7 +269,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col">
+                <div class="col pb-3">
                     <a href="{{ route('admin.daftarpengaduan', 'Kerusakan') }}" style="text-decoration: none;">
                         <div class="card border-1 rounded-2  d-flex flex-column h-100">
                             <div class="card-body">
@@ -298,12 +299,12 @@
                                             @if (auth()->user()->role == 'UnitKerja')
                                                 @if ($pengaduanBelumTindak->count() > 0)
                                                     <span
-                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
+                                                        class="position-absolute custom-badge-saran translate-middle-y badge rounded-pill bg-danger">{{ $pengaduanBelumTindak->count() }}</span>
                                                 @endif
                                             @else
                                                 @if ($pengaduansNotLinked->count() > 0)
                                                     <span
-                                                        class="position-absolute custom-badge-saran translate-middle badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
+                                                        class="position-absolute custom-badge-saran translate-middle-y badge rounded-pill bg-danger">{{ $pengaduansNotLinked->count() }}</span>
                                                 @endif
                                             @endif
                                         </h5>

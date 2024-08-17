@@ -6,7 +6,7 @@
                 Layanan SMKN 1 Ciamis
             </span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
             aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -16,7 +16,7 @@
                     @if (auth()->user()->role == 'SuperAdmin' || auth()->user()->role == 'Admin' || auth()->user()->role == 'Fastingkom')
                         @if (auth()->user()->role == 'SuperAdmin' || auth()->user()->role == 'Admin')
                             <div class="col d-flex mt-2">
-                                <div class="dropdown">
+                                <div class="dropdown w-100 text-center">
                                     <a class="btn btn-outline-light border-0 dropdown-toggle" href="javascript:void:(0)"
                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="fas fa-user"></i>
@@ -40,11 +40,16 @@
                             </div>
                         @endif
                         @if (auth()->user()->role == 'Fastingkom')
-                            <div class="col">
+                            <div class="col" style="margin-left: auto;">
                                 <a class="btn btn-outline-light border-0" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                                    <i class="fa fa-key"></i> <br> Keluar
+                                    <div class="row">
+                                        <div class="col"><i class="fa fa-key"></i></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"><span>Keluar</span></div>
+                                    </div>
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -57,11 +62,16 @@
                             </a>
                         </div>
                     @else
-                        <div class="col d-flex">
+                        <div class="col d-flex" style="margin-left: auto;">
                             <a class="btn btn-outline-light border-0" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                                <i class="fa fa-key"></i> <br> Keluar
+                                <div class="row">
+                                    <div class="col"><i class="fa fa-key"></i></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><span>Keluar</span></div>
+                                </div>
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
@@ -70,7 +80,7 @@
                     @endif
 
                     @if (session('original_user_id'))
-                        <div class="col d-flex">
+                        <div class="col d-flex" style="margin-left: auto;">
                             <a class="btn btn-outline-light border-0" href="{{ route('admin.stop-impersonating') }}">
                                 <i class="fa fa-key"></i> <span>Berhenti</span>
                             </a>
@@ -119,12 +129,12 @@
                         </div>
                     </a>
                 </div>
-                <div class="col d-flex me-2" style="margin-left: auto;">
+                <div class="col d-flex" style="margin-left: auto;">
                     <a href="
                     @if (auth()->user()) {{ route('admin.index') }}
                     @else
                     {{ route('main.index') }} @endif "
-                        class="btn btn-outline-light border-0" type="button">
+                        class="btn btn-outline-light border-0">
                         <div class="row">
                             <div class="col">
                                 <i class="fas fa-home"></i>
