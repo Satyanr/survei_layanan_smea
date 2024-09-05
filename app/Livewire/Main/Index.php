@@ -5,7 +5,6 @@ namespace App\Livewire\Main;
 use Livewire\Component;
 use App\Models\Kategori;
 use App\Models\Pengaduan;
-use App\Models\SubKategori;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -26,7 +25,6 @@ class Index extends Component
             'kategoris' => Kategori::where('kode_kategori', 'LIKE',$this->kode_kategori)
                 ->orWhere('kode_kategori', 'LIKE','TNG5')
                 ->get(),
-            // 'subkategoris' => SubKategori::all(),
         ]);
     }
     public function idon()
@@ -78,36 +76,20 @@ class Index extends Component
         $this->kode_kategori = null;
     }
 
-    // public function isi_kat()
-    // {
-    //     $this->subkaton = true;
-    // }
-
-    // public function akadon()
-    // {
-    //     $this->katforsub = $this->kategori;
-    // }
-
     public function store()
     {
         $this->validate(
             [
                 'identitas_pengaduan' => 'required',
                 'isi_pengaduan' => 'required',
-                // 'jenis_layanan' => 'required',
-                // 'subkategori' => 'required',
                 'kategori' => 'required',
                 'tentang' => 'required',
-                // 'type' => 'required',
             ],
             [
                 'identitas_pengaduan.required' => 'Identitas tidak boleh kosong',
                 'isi_pengaduan.required' => 'Isi Pengaduan tidak boleh kosong',
-                // 'jenis_layanan.required' => 'Jenis Layanan tidak boleh kosong',
-                // 'subkategori.required' => 'Sub Kategori tidak boleh kosong',
                 'kategori.required' => 'Kategori tidak boleh kosong',
                 'tentang.required' => 'tentang tidak boleh kosong',
-                // 'type.required' => 'Tipe tidak boleh kosong',
             ],
         );
 
@@ -149,10 +131,8 @@ class Index extends Component
                         'no_telp_pengadu' => $this->no_telp_pengadu,
                         'email_pengadu' => $this->email_pengadu,
                         'isi_pengaduan' => $this->isi_pengaduan,
-                        // 'jenis_layanan' => $this->jenis_layanan,
                         'kategori' => $this->kategori,
                         'type' => $this->type,
-                        // 'sub_kategori' => $this->subkategori,
                         'kode_kategori' => $this->kode_kategori,
                         'tempat' => $this->tempat,
                         'tentang' => $this->tentang,
@@ -168,10 +148,8 @@ class Index extends Component
                         'no_telp_pengadu' => $this->no_telp_pengadu,
                         'email_pengadu' => $this->email_pengadu,
                         'isi_pengaduan' => $this->isi_pengaduan,
-                        // 'jenis_layanan' => $this->jenis_layanan,
                         'kategori' => $this->kategori,
                         'type' => $this->type,
-                        // 'sub_kategori' => $this->subkategori,
                         'kode_kategori' => $this->kode_kategori,
                         'tempat' => $this->tempat,
                         'tentang' => $this->tentang,
@@ -193,10 +171,8 @@ class Index extends Component
                         'no_telp_pengadu' => $this->no_telp_pengadu,
                         'email_pengadu' => $this->email_pengadu,
                         'isi_pengaduan' => $this->isi_pengaduan,
-                        // 'jenis_layanan' => $this->jenis_layanan,
                         'kategori' => $this->kategori,
                         'type' => $this->type,
-                        // 'sub_kategori' => $this->subkategori,
                         'kode_kategori' => $this->kode_kategori,
                         'tentang' => $this->tentang,
                         'bukti_foto' => 'storage/pengaduan_img/' . $filename,
@@ -211,10 +187,8 @@ class Index extends Component
                         'no_telp_pengadu' => $this->no_telp_pengadu,
                         'email_pengadu' => $this->email_pengadu,
                         'isi_pengaduan' => $this->isi_pengaduan,
-                        // 'jenis_layanan' => $this->jenis_layanan,
                         'kategori' => $this->kategori,
                         'type' => $this->type,
-                        // 'sub_kategori' => $this->subkategori,
                         'kode_kategori' => $this->kode_kategori,
                         'tentang' => $this->tentang,
                     ];
@@ -245,10 +219,8 @@ class Index extends Component
                         'tanggal_pengaduan' => date('Y-m-d'),
                         'identitas_pengaduan' => $this->identitas_pengaduan,
                         'isi_pengaduan' => $this->isi_pengaduan,
-                        // 'jenis_layanan' => $this->jenis_layanan,
                         'kategori' => $this->kategori,
                         'type' => $this->type,
-                        // 'sub_kategori' => $this->subkategori,
                         'kode_kategori' => $this->kode_kategori,
                         'tempat' => $this->tempat,
                         'tentang' => $this->tentang,
@@ -261,10 +233,8 @@ class Index extends Component
                         'tanggal_pengaduan' => date('Y-m-d'),
                         'identitas_pengaduan' => $this->identitas_pengaduan,
                         'isi_pengaduan' => $this->isi_pengaduan,
-                        // 'jenis_layanan' => $this->jenis_layanan,
                         'kategori' => $this->kategori,
                         'type' => $this->type,
-                        // 'sub_kategori' => $this->subkategori,
                         'kode_kategori' => $this->kode_kategori,
                         'tempat' => $this->tempat,
                         'tentang' => $this->tentang,
@@ -282,10 +252,8 @@ class Index extends Component
                         'tanggal_pengaduan' => date('Y-m-d'),
                         'identitas_pengaduan' => $this->identitas_pengaduan,
                         'isi_pengaduan' => $this->isi_pengaduan,
-                        // 'jenis_layanan' => $this->jenis_layanan,
                         'kategori' => $this->kategori,
                         'type' => $this->type,
-                        // 'sub_kategori' => $this->subkategori,
                         'kode_kategori' => $this->kode_kategori,
                         'tentang' => $this->tentang,
                         'bukti_foto' => 'storage/pengaduan_img/' . $filename,
@@ -297,10 +265,8 @@ class Index extends Component
                         'tanggal_pengaduan' => date('Y-m-d'),
                         'identitas_pengaduan' => $this->identitas_pengaduan,
                         'isi_pengaduan' => $this->isi_pengaduan,
-                        // 'jenis_layanan' => $this->jenis_layanan,
                         'kategori' => $this->kategori,
                         'type' => $this->type,
-                        // 'sub_kategori' => $this->subkategori,
                         'kode_kategori' => $this->kode_kategori,
                         'tentang' => $this->tentang,
                     ];
@@ -314,7 +280,7 @@ class Index extends Component
         $this->tentangon = false;
         $this->subkaton = false;
         $this->resetInput();
-        $this->alert('success', 'Berhasil Ditambahkan!', [
+        $this->alert('success', 'Berhasil Di Kirimkan', [
             'position' => 'center',
             'timer' => 3000,
             'toast' => false,

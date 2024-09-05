@@ -21,8 +21,6 @@ return new class extends Migration {
             $table->string('tempat')->nullable();
             $table->string('tentang')->nullable();
             $table->text('isi_pengaduan')->nullable();
-            // $table->string('jenis_layanan')->nullable();
-            // $table->string('type')->nullable();
             $table->string('kategori')->nullable();
             $table->string('sub_kategori')->nullable();
             $table->string('kode_kategori')->nullable();

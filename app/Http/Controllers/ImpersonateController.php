@@ -23,9 +23,9 @@ class ImpersonateController extends Controller
 
             auth()->logout();
 
-            $user = User::find($originalUserId); // Get the original user instance
+            $user = User::find($originalUserId);
 
-            auth()->login($user); // Log in as the original user
+            auth()->login($user);
 
             session()->forget('original_user_id');
         }

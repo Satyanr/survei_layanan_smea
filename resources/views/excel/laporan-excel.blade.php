@@ -2,29 +2,6 @@
 <html>
 
 <head>
-    {{-- <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-        }
-
-        th,
-        td {
-            border: 1px solid #000;
-            text-align: center;
-            padding: 5px;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        td.warptxt {
-            word-wrap: break-word;
-            white-space: normal;
-        }
-    </style> --}}
 </head>
 
 <body>

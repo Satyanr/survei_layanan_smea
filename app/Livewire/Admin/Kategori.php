@@ -10,15 +10,12 @@ use Livewire\WithPagination;
 
 class Kategori extends Component
 {
-    public $searchkategori, $searchsubkategori, $nama_kategori, $nama_subkategori, $nama_layanan, $kategori_id, $kode_kategori, $kode_subkategori;
+    public $searchkategori, $nama_kategori, $nama_layanan, $kategori_id, $kode_kategori;
     public $updateMode = false;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    protected $paginationName;
-    public function changePagination()
-    {
-        $this->paginationName = 'KategoriPage';
-    }
+    protected $paginationName = 'KategoriPage';
+
     public function paginationView()
     {
         return 'components.admin.pagination_custom';
@@ -30,11 +27,9 @@ class Kategori extends Component
     public function resetInput()
     {
         $this->nama_kategori = '';
-        $this->nama_subkategori = '';
         $this->nama_layanan = '';
         $this->kategori_id = '';
         $this->kode_kategori = '';
-        $this->kode_subkategori = '';
     }
     public function render()
     {
@@ -54,47 +49,23 @@ class Kategori extends Component
             [
                 'nama_kategori' => 'required',
                 'kode_kategori' => 'required',
-                // 'nama_layanan' => 'required',
             ],
             [
                 'nama_kategori.required' => 'Nama kategori tidak boleh kosong',
                 'kode_kategori.required' => 'Kode kategori tidak boleh kosong',
-                // 'nama_layanan.required' => 'Pilih Jenis Layanan',
             ],
         );
         KategoriModel::create([
-            // 'nama_layanan' => $this->nama_layanan,
             'nama' => $this->nama_kategori,
             'kode_kategori' => $this->kode_kategori,
         ]);
         session()->flash('message', 'Kategori berhasil ditambahkan');
         $this->resetInput();
     }
-    // public function storeSubKategori()
-    // {
-    //     $this->validate([
-    //         'nama_subkategori' => 'required',
-    //         'kategori_id' => 'required',
-    //     ]);
-
-    //     SubKategori::create([
-    //         'nama' => $this->nama_subkategori,
-    //         'kategori_id' => $this->kategori_id,
-    //         // 'kode_kategori' => $this->kode_subkategori,
-    //     ]);
-
-    //     session()->flash('message', 'Subkategori berhasil ditambahkan');
-    //     $this->resetInput();
-    // }
-
+   
     public function destroyKategori($id)
     {
         KategoriModel::find($id)->delete();
         session()->flash('message', 'Kategori berhasil dihapus');
     }
-    // public function destroySubKategori($id)
-    // {
-    //     SubKategori::find($id)->delete();
-    //     session()->flash('message', 'Subkategori berhasil dihapus');
-    // }
 }

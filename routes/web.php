@@ -51,8 +51,6 @@ Route::prefix('/admin')->group(function () {
     });
     Route::controller(LaporanWordController::class)->group(function () {
         Route::prefix('msword')->group(function () {
-            // Route::get('/laporan-tinjut', 'LaporanTinjut')->name('laporan-tinjut');
-            // Route::get('/laporan-monev', 'LaporanMonev')->name('laporan-monev');
             Route::get('/laporan-pengaduan', 'LaporanPengaduanM')->name('laporan-pengaduan-masyarakat');
         });
     });

@@ -18,7 +18,6 @@
                     <tr>
                         <th>No</th>
                         <th>Tanggal Permintaan</th>
-                        {{-- <th>Identitas </th> --}}
                         <th>Kategori</th>
                         <th>Isi Permintaan</th>
                         <th class="text-center">Informasi Tambahan</th>
@@ -29,21 +28,6 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $pengaduan->tanggal_pengaduan }}</td>
-                            {{-- <td>
-                                @if ($pengaduan->identitas_pengaduan == 'Lengkap')
-                                    <a href="javascript:void(0)"
-                                        class="link-offset-2 link-underline link-underline-opacity-0 text-dark"
-                                        data-bs-toggle="modal" data-bs-target="#UnivModal"
-                                        wire:click='showIdentitas({{ $pengaduan->id }})'>
-                                        {{ $pengaduan->identitas_pengaduan }}
-                                        <br>
-                                        <small class="text-danger" style="font-size: 0.7rem;">Click
-                                            For Info</small>
-                                    </a>
-                                @else
-                                    {{ $pengaduan->identitas_pengaduan }}
-                                @endif
-                            </td> --}}
                             <td>
                                 <div class="row">
                                     <div class="col">

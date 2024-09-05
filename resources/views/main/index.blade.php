@@ -106,24 +106,6 @@
 
 @section('content')
     <div class="container my-4">
-        {{-- <div class="row">
-            <div class="col">
-                <h1 class="display-4 text-center" style="font-family: 'Switzal', sans-serif;">Selamat Datang di APEL</h1>
-                <h2 style="font-family: 'Switzal', sans-serif;" class="text-center">(Aplikasi Pengaduan Layanan Eksternal)</h2>
-                <div class="row text-center row-cols-2" style="font-family: 'Si Ikan', sans-serif;">
-                    <div class="col-md m-auto shadow bg-body-tertiary rounded-pill p-3 mb-5">
-                        <!-- Add a container div for animation -->
-                        <div id="textContainer">
-                            <h6 class="text-focus-in" id="changingText">Tentang Aplikasi</h6>
-                            <p class="text-focus-in" id="changingParagraph">APEL adalah sarana untuk melaporkan pengaduan berkaitan dengan layanan diklat(luring,daring,hybird learning), layanan PKL, layanan penggunaan fasilitas lembaga (PNBP), layanan prioritas kelompok rentan, dan layanan kunjungan.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-auto d-flex align-items-end">
-                        <img src="{{ asset('image/civil-worker.png') }}" class="img-fluid" width="200">
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <div class="row pt-5">
             <div class="col">
                 <div class="shadow p-3 mb-5 bg-body-tertiary rounded-4">
@@ -135,64 +117,4 @@
 @endsection
 
 @push('js')
-    <script>
-        // Array of texts to cycle through
-        var texts = [{
-                title: "Tentang",
-                paragraph: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.Corrupti,cupiditate mollitia.Veritatis nulla pariatur aperiam,nisi impedit nostrum deleniti rerum totam quas eligendi qui ullam repudiandae aliquid reiciendis veniam voluptatem."
-            },
-            {
-                title: "Tentang Aplikasi",
-                paragraph: "New Paragraph 2"
-            },
-            {
-                title: "Tentang Aplikasi",
-                paragraph: "APEL adalah sarana untuk melaporkan pengaduan berkaitan dengan layanan diklat(luring,daring,hybird learning), layanan PKL, layanan penggunaan fasilitas lembaga (PNBP), layanan prioritas kelompok rentan, dan layanan kunjungan."
-            }
-        ];
-
-        // Counter to keep track of the current text
-        var currentIndex = 0;
-
-        // Function to change the text
-        function changeText() {
-            // Get the elements to change
-            var titleElement = document.getElementById("changingText");
-            var paragraphElement = document.getElementById("changingParagraph");
-
-            // Add class to trigger tracking-out animation
-            titleElement.classList.add('tracking-out-contract-bck');
-            paragraphElement.classList.add('tracking-out-contract-bck');
-
-            // Force reflow to restart the animation
-            void titleElement.offsetWidth;
-            void paragraphElement.offsetWidth;
-
-            // After a delay, remove tracking-out animation classes and update the text
-            setTimeout(function() {
-                // Remove tracking-out animation classes
-                titleElement.classList.remove('tracking-out-contract-bck');
-                paragraphElement.classList.remove('tracking-out-contract-bck');
-
-                // Update the text with the current index
-                titleElement.innerText = texts[currentIndex].title;
-                paragraphElement.innerText = texts[currentIndex].paragraph;
-
-                // Add class to trigger text-focus-in animation
-                titleElement.classList.add('text-focus-in');
-                paragraphElement.classList.add('text-focus-in');
-
-                // Increment the index
-                currentIndex++;
-
-                // Reset index if it exceeds the length of the array
-                if (currentIndex >= texts.length) {
-                    currentIndex = 0;
-                }
-            }, 1000); // Adjust the delay time if needed
-        }
-
-
-        setInterval(changeText, 10000);
-    </script>
 @endpush

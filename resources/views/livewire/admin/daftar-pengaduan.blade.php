@@ -11,22 +11,6 @@
             </div>
         </div>
     </div>
-    {{-- <div class="row">
-        <div class="col">
-            <form action="{{ route('laporan-monev') }}" method="GET">
-                <div class="col">
-                    <input type="text" class="form-control" name="tentang" value="{{ $this->tentangcrud }}" hidden readonly>
-                    <div class="input-group mb-3">
-                        <input type="date" class="form-control" name="start" id="start" required>
-                        <span class="input-group-text">to</span>
-                        <input type="date" class="form-control" name="end" id="end" required>
-
-                        <button class="btn btn-primary" type="submit">Unduh</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div> --}}
     <div class="row mb-3">
         <div class="col">
             @if (session()->has('message'))
@@ -57,15 +41,6 @@
                             <td class="align-middle">{{ $pengaduan->tanggal_pengaduan }}</td>
                             <td class="align-middle">
                                 @if ($pengaduan->identitas_pengaduan == 'Lengkap')
-                                    {{-- <a href="javascript:void(0)"
-                                        class="link-offset-2 link-underline link-underline-opacity-0 text-dark"
-                                        data-bs-toggle="modal" data-bs-target="#UnivModal"
-                                        wire:click='showIdentitas({{ $pengaduan->id }})'>
-                                        {{ $pengaduan->identitas_pengaduan }}
-                                        <br>
-                                        <small class="btn btn-outline-danger btn-sm mt-2"
-                                            style="font-size: 0.7rem;">Informasi Lengkap</small>
-                                    </a> --}}
                                     <a href="javascript:void(0)" class="btn btn-outline-primary btn-sm"
                                         data-bs-toggle="modal" data-bs-target="#UnivModal"
                                         wire:click='showIdentitas({{ $pengaduan->id }})'>
@@ -94,16 +69,6 @@
                             </td>
                             <td class="align-middle">
                                 @if (strlen($pengaduan->isi_pengaduan) > 20)
-                                    {{-- <a href="javascript:void(0)"
-                                        class="link-offset-2 link-underline link-underline-opacity-0"
-                                        data-bs-toggle="modal" data-bs-target="#UnivModal"
-                                        wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
-                                        <div class="text-dark d-inline-block text-truncate pb-2"
-                                            style="max-width: 150px;">
-                                            {{ $pengaduan->isi_pengaduan }}</div><br>
-                                        <small class="btn btn-outline-primary btn-sm" style="font-size: 0.7rem;"> Lihat
-                                            Selengkapnya </small>
-                                    </a> --}}
                                     <a href="javascript:void(0)"
                                         class="btn btn-outline-primary d-flex flex-column btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#UnivModal" wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
@@ -111,15 +76,6 @@
                                             {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
                                 @else
-                                    {{-- <a href="javascript:void(0)"
-                                        class="link-offset-2 link-underline link-underline-opacity-0"
-                                        data-bs-toggle="modal" data-bs-target="#UnivModal"
-                                        wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
-                                        <div class="text-dark d-inline-block pb-2">
-                                            {{ $pengaduan->isi_pengaduan }}</div><br>
-                                        <small class="btn btn-outline-primary btn-sm" style="font-size: 0.7rem;"> Lihat
-                                            Selengkapnya </small>
-                                    </a> --}}
                                     <a href="javascript:void(0)"
                                         class="btn btn-outline-primary d-flex flex-column btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#UnivModal"

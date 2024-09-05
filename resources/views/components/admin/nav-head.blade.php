@@ -87,25 +87,7 @@
                         </div>
                     @endif
                 @else
-                    {{-- <div class="col d-flex me-2" style="margin-left: auto;">
-                        <a href="{{ route('login') }}" class="btn btn-outline-light border-0">
-                            <i class="fas fa-user"></i> Login
-                        </a>
-                    </div> --}}
-                    {{-- <div class="col d-flex me-2" style="margin-left: auto;">
-                        <a href="{{ route('login') }}" class="btn btn-outline-light border-0">
-                            <div class="row">
-                                <div class="col">
-                                    <i class="fa-solid fa-circle-exclamation"></i>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    Tentang
-                                </div>
-                            </div>
-                        </a>
-                    </div> --}}
+                    
                 @endif
                 <div class="col d-flex me-2" style="margin-left: auto;">
                     <a href="
