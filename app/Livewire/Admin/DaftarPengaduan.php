@@ -120,7 +120,7 @@ class DaftarPengaduan extends Component
         $tindakan = LaporanTindakLanjut::find($id);
         $tindakan->delete();
         session()->flash('message', 'Tindakan Berhasil Dihapus');
-        return redirect()->to('/admin/daftar-pengaduan/pengaduan');
+        return redirect()->to('/admin/menu-laporan');
     }
 
     public function showGambar($id)

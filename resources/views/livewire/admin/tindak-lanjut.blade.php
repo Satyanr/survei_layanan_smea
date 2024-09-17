@@ -42,17 +42,20 @@
                     <div class="col">
                         <div class="row">
                             <div class="col">
-                                <label class="form-label"><strong> Foto Jika Ada </strong></label>
+                                <label class="form-label">
+                                    <strong>
+                                        @if ($pengaduan->tentang == 'Kerusakan')
+                                            Wajib Dengan Foto
+                                        @else
+                                            Foto Jika Ada
+                                        @endif
+                                    </strong>
+                                </label>
                             </div>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-auto">
-                                <input type="file" class="form-control" wire:model='bukti_foto'>
-                                @error('bukti_foto')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <input type="file" class="form-control @error('bukti_foto') is-invalid @enderror" wire:model='bukti_foto'>
                                 <div wire:loading wire:target="bukti_foto">Uploading...</div>
                             </div>
                         </div>
@@ -95,7 +98,13 @@
                     </div>
 
                     <div class="col mb-3">
-                        <label class="form-label"><strong> Tinjauan </strong></label>
+                        <label class="form-label"><strong>
+                                @if ($pengaduan->tentang == 'Permintaan Informasi')
+                                    Jawaban
+                                @else
+                                    Tinjauan
+                                @endif
+                            </strong></label>
                         <textarea wire:model='tinjauan' class="form-control @error('tinjauan') is-invalid @enderror" rows="2"></textarea>
                         @error('tinjauan')
                             <div class="invalid-feedback">
