@@ -6,7 +6,7 @@
         <div class="col-auto">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
-                <input type="text" class="form-control" placeholder="Cari Laporan" aria-label="Cari Laporan"
+                <input type="text" class="form-control" placeholder="Cari Informasi" aria-label="Cari Informasi"
                     aria-describedby="basic-addon1" wire:model='searchlaporan' wire:input='resetPage'>
             </div>
         </div>
@@ -73,13 +73,13 @@
                                                 data-bs-toggle="modal" data-bs-target="#UnivModal"
                                                 wire:click='showTindakan({{ $pengaduan->id }})'>
                                                 <i class="fa-regular fa-circle-check"></i><br>
-                                                <small>Sudah Ditindak Lanjuti</small>
+                                                <small>Sudah Ada Jawaban</small>
                                             </a>
                                         @else
                                             <a href="javascript:void(0)"
                                                 class="link-offset-2 link-underline link-underline-opacity-0 text-danger">
                                                 <i class="fa-regular fa-circle-xmark"></i><br>
-                                                <small>Belum Ada Tindakan</small>
+                                                <small>Belum Ada Jawaban</small>
                                             </a>
                                         @endif
                                     </div>
