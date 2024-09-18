@@ -118,9 +118,9 @@ class DaftarPengaduan extends Component
     public function destroyTindakan($id)
     {
         $tindakan = LaporanTindakLanjut::find($id);
-        $tindakan->delete();
+        // $tindakan->delete();
         session()->flash('message', 'Tindakan Berhasil Dihapus');
-        return redirect()->to('/admin/menu-laporan');
+        return redirect()->to('/admin/daftar-pengaduan/'. $this->tentangcrud);
     }
 
     public function showGambar($id)
