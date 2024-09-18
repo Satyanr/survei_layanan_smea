@@ -112,37 +112,67 @@ class TindakLanjut extends Component
                 }
             }
         } else {
-            if ($this->bukti_foto) {
+            if (Pengaduan::find($this->pengaduan_id)->tentang == 'Kerusakan') {
                 $this->validate(
-                    ['bukti_foto' => 'image'],
+                    [
+                        'bukti_foto' => 'required|image',
+                        'penyebab' => 'required',
+                    ],
 
-                    ['bukti_foto.image' => 'File harus berupa gambar', 'bukti_foto.max' => 'File tidak boleh lebih dari 1MB'],
+                    [
+                        'bukti_foto.image' => 'File harus berupa gambar',
+                        'bukti_foto.required' => 'buktiforo tidak boleh kosong',
+                        'penyebab.required' => 'Penyebab tidak boleh kosong',
+                    ],
                 );
 
                 $filename = time() . $this->bukti_foto->getClientOriginalName();
                 $destinationPath = 'public/tindakan_img';
 
                 Storage::putFileAs($destinationPath, $this->bukti_foto, $filename);
-                LaporanTindakLanjut::create([
-                    'pengaduan_id' => $this->pengaduan_id,
-                    'user_id' => auth()->user()->id,
-                    'penyebab' => $this->penyebab,
-                    'tindakan_korektif' => $this->tinkor,
-                    'tinjauan' => $this->tinjauan,
-                    'koreksi' => $this->koreksi,
-                    'kesimpulan' => $this->kesimpulan,
-                    'bukti_foto' => 'storage/tindakan_img/' . $filename,
-                ]);
+                    LaporanTindakLanjut::create([
+                        'pengaduan_id' => $this->pengaduan_id,
+                        'user_id' => auth()->user()->id,
+                        'penyebab' => $this->penyebab,
+                        'tindakan_korektif' => $this->tinkor,
+                        'tinjauan' => $this->tinjauan,
+                        'koreksi' => $this->koreksi,
+                        'kesimpulan' => $this->kesimpulan,
+                        'bukti_foto' => 'storage/tindakan_img/' . $filename,
+                    ]);
             } else {
-                LaporanTindakLanjut::create([
-                    'pengaduan_id' => $this->pengaduan_id,
-                    'user_id' => auth()->user()->id,
-                    'penyebab' => $this->penyebab,
-                    'tindakan_korektif' => $this->tinkor,
-                    'tinjauan' => $this->tinjauan,
-                    'koreksi' => $this->koreksi,
-                    'kesimpulan' => $this->kesimpulan,
-                ]);
+                if ($this->bukti_foto) {
+                    $this->validate(
+                        ['bukti_foto' => 'image'],
+
+                        ['bukti_foto.image' => 'File harus berupa gambar', 'bukti_foto.max' => 'File tidak boleh lebih dari 1MB'],
+                    );
+
+                    $filename = time() . $this->bukti_foto->getClientOriginalName();
+                    $destinationPath = 'public/tindakan_img';
+
+                    Storage::putFileAs($destinationPath, $this->bukti_foto, $filename);
+                    LaporanTindakLanjut::create([
+                        'pengaduan_id' => $this->pengaduan_id,
+                        'user_id' => auth()->user()->id,
+                        'penyebab' => $this->penyebab,
+                        'tindakan_korektif' => $this->tinkor,
+                        'tinjauan' => $this->tinjauan,
+                        'koreksi' => $this->koreksi,
+                        'kesimpulan' => $this->kesimpulan,
+                        'bukti_foto' => 'storage/tindakan_img/' . $filename,
+                    ]);
+                } else {
+                    LaporanTindakLanjut::create([
+                        'pengaduan_id' => $this->pengaduan_id,
+                        'user_id' => auth()->user()->id,
+                        'penyebab' => $this->penyebab,
+                        'tindakan_korektif' => $this->tinkor,
+                        'tinjauan' => $this->tinjauan,
+                        'koreksi' => $this->koreksi,
+                        'kesimpulan' => $this->kesimpulan,
+                    ]);
+                }
             }
         }
         return redirect()
