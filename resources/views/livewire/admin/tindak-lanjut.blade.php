@@ -55,7 +55,8 @@
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-auto">
-                                <input type="file" class="form-control @error('bukti_foto') is-invalid @enderror" wire:model='bukti_foto'>
+                                <input type="file" class="form-control @error('bukti_foto') is-invalid @enderror"
+                                    wire:model='bukti_foto'>
                                 <div wire:loading wire:target="bukti_foto">Uploading...</div>
                             </div>
                         </div>
@@ -88,7 +89,8 @@
 
                 <div class="row px-5">
                     <div class="col mb-3">
-                        <label class="form-label"><strong> Tindakan Korektif </strong></label>
+                        <label class="form-label"><strong> Tindakan Korektif </strong> <br> <small class="text-secondary">( muncul di
+                                keterangan tindakan )</small></label>
                         <textarea wire:model='tinkor' class="form-control @error('tinkor') is-invalid @enderror" rows="2"></textarea>
                         @error('tinkor')
                             <div class="invalid-feedback">
@@ -104,7 +106,7 @@
                                 @else
                                     Tinjauan
                                 @endif
-                            </strong></label>
+                            </strong> <br> <small class="text-secondary">( wajib di isi )</small></label>
                         <textarea wire:model='tinjauan' class="form-control @error('tinjauan') is-invalid @enderror" rows="2"></textarea>
                         @error('tinjauan')
                             <div class="invalid-feedback">
