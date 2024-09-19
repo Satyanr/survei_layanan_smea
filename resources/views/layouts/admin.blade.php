@@ -10,20 +10,20 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> --}}
 
+
+    <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
     <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
     <style>
         html,
@@ -64,6 +64,15 @@
 
         .navbar-toggler-icon {
             filter: invert(1);
+        }
+
+        #manualBookBtn {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 5%;
+            z-index: 999;
+            transition: bottom 0.3s ease-in-out;
         }
     </style>
 
@@ -387,10 +396,60 @@
         @yield('content')
     </div>
 
+    {{-- <div id="manualBookBtn" class="p-3 me-3">
+        <button class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle p-3"
+            data-bs-toggle="modal" data-bs-target="#BookModal">
+            <i class="fa-solid fa-book fs-4 text-white"></i>
+        </button>
+    </div> --}}
+
     <x-admin.footer />
+
+    {{-- <!-- Manual Book Modal -->
+    <div class="modal fade" id="BookModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Manual Book</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="{{asset("manual/Manual-User.pdf")}}"
+                        frameborder="0" width="100%" height="300px"></iframe>
+                </div>
+            </div>
+        </div>
+    </div> --}}
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script> --}}
+
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const manualBookBtn = document.getElementById('manualBookBtn');
+            const footer = document.querySelector('footer');
+            const manualBookHeight = manualBookBtn.offsetHeight;
+
+            function updateButtonPosition() {
+                const footerTop = footer.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                // If the footer is in view, move the button above it
+                if (footerTop < windowHeight) {
+                    manualBookBtn.style.bottom = `${(windowHeight - footerTop) + 10}px`;
+                } else {
+                    manualBookBtn.style.bottom = '0';
+                }
+            }
+
+            // Call the function on load and when the user scrolls or resizes the window
+            window.addEventListener('scroll', updateButtonPosition);
+            window.addEventListener('resize', updateButtonPosition);
+            updateButtonPosition();
+        });
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     </script> --}}
 
     <script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
