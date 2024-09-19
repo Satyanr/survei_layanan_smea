@@ -58,7 +58,7 @@ class PDFController extends Controller
                             ->get();
                     }
                 }
-            }elseif ($jenis === 'Ditindak'){
+            } elseif ($jenis === 'Ditindak') {
                 if ($unit != null) {
                     if ($start == $end) {
                         $aduan = Pengaduan::whereDate('pengaduans.created_at', $start)->whereHas('tindaklanjuts')->join('pengaduan_links', 'pengaduan_links.pengaduan_id', '=', 'pengaduans.id')->where('pengaduan_links.user_id', $unit)->get();
@@ -124,6 +124,10 @@ class PDFController extends Controller
             }
         }
         $data = [
+            'start' => $start->format('d-m-Y'),
+            'end' => $end->format('d-m-Y'),
+            'jenis' => $jenis,
+            'unit' => $unit,
             'pengaduan' => $aduan,
         ];
 

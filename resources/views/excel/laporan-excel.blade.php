@@ -6,6 +6,12 @@
 
 <body>
     <h1>Laporan Data Layanan</h1>
+    <h5 style="color: grey">Periode @if ($start == $end)
+        {{ $start }}
+    @else
+        {{ $start }} Sampai {{ $end }}
+    @endif
+</h5>
 
     <table>
         <tr>
@@ -138,7 +144,7 @@
                     </td>
                     <td>
                         @if ($aduan->identitas_pengaduan == 'Lengkap')
-                            {{ $aduan->no_telp_pengadu }}  
+                            {{ $aduan->no_telp_pengadu }},  
                             {{ $aduan->email_pengadu }}  
                         @else
                             Tidak Tersedia

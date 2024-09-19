@@ -29,6 +29,13 @@
 
 <body>
     <h1 style="text-align: center">Laporan Data Layanan</h1>
+    <h5 style="text-align: left; opacity: 50%;">Periode @if ($start == $end)
+            {{ $start }}
+        @else
+            {{ $start }} Sampai {{ $end }}
+        @endif
+    </h5>
+
 
     <table style="width:100%; padding-bottom: 10px;">
         <tr>
@@ -65,14 +72,14 @@
         <tbody>
             @forelse ($pengaduan->where("tentang", "Kerusakan") as $aduan)
                 <tr>
-                    <td style="width: 5%">{{ $loop->iteration }}</td>
+                    <td style="width: 5%;">{{ $loop->iteration }}</td>
                     <td style="width: 10%">{{ $aduan->updated_at->format('d-m-y') }}</td>
                     <td style="width: 15%" class="warptxt">{{ $aduan->tempat }}</td>
                     <td class="warptxt">{{ $aduan->isi_pengaduan }}</td>
                     <td style="width: 15%">{{ $aduan->kategori }}</td>
                     <td>
                         <img src="{{ public_path($aduan->bukti_foto) }}" alt="" style="width: 100px;">
-                    </td>                    
+                    </td>
                 </tr>
             @empty
                 <tr>
@@ -161,8 +168,8 @@
                     </td>
                     <td class="warptxt">
                         @if ($aduan->identitas_pengaduan == 'Lengkap')
-                            {{ $aduan->no_telp_pengadu }}  
-                            {{ $aduan->email_pengadu }}  
+                            {{ $aduan->no_telp_pengadu }}
+                            {{ $aduan->email_pengadu }}
                         @else
                             Tidak Tersedia
                         @endif

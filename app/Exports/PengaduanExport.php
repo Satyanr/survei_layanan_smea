@@ -133,6 +133,8 @@ class PengaduanExport implements FromView
         }
 
         return view('excel.laporan-excel', [
+            'start' => $start->format('d-m-Y'),
+            'end' => $end->format('d-m-Y'),
             'pengaduan' => $aduan,
         ]);
     }
