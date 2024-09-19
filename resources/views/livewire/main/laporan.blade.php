@@ -48,17 +48,15 @@
                             <td>
                                 @if (strlen($pengaduan->isi_pengaduan) > 20)
                                     <a href="javascript:void(0)"
-                                        class="btn btn-outline-primary d-flex flex-column btn-sm"
-                                        data-bs-toggle="modal" data-bs-target="#UnivModal"
-                                        wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
+                                        class="btn btn-outline-primary d-flex flex-column btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#UnivModal" wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
                                         <div class="text-dark d-inline-block text-truncate" style="max-width: 150px;">
                                             {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
                                 @else
                                     <a href="javascript:void(0)"
-                                        class="btn btn-outline-primary d-flex flex-column btn-sm"
-                                        data-bs-toggle="modal" data-bs-target="#UnivModal"
-                                        wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
+                                        class="btn btn-outline-primary d-flex flex-column btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#UnivModal" wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
                                         <div class="text-dark d-inline-block">
                                             {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
@@ -68,16 +66,16 @@
                                 <div class="row text-center">
                                     <div class="col">
                                         @if ($pengaduan->tindaklanjuts->count() != 0)
-                                            <a href="javascript:void(0)"
-                                                class="link-offset-2 link-underline link-underline-opacity-0 text-success"
-                                                data-bs-toggle="modal" data-bs-target="#UnivModal"
+                                            <a href="javascript:void(0)" class="text-success"
+                                                style="text-decoration: none;" data-bs-toggle="modal"
+                                                data-bs-target="#UnivModal"
                                                 wire:click='showTindakan({{ $pengaduan->id }})'>
                                                 <i class="fa-regular fa-circle-check"></i><br>
                                                 <small>Sudah Ada Jawaban</small>
                                             </a>
                                         @else
-                                            <a href="javascript:void(0)"
-                                                class="link-offset-2 link-underline link-underline-opacity-0 text-danger">
+                                            <a href="javascript:void(0)" class="text-danger"
+                                                style="text-decoration: none;">
                                                 <i class="fa-regular fa-circle-xmark"></i><br>
                                                 <small>Belum Ada Jawaban</small>
                                             </a>
@@ -134,7 +132,8 @@
                     @elseif($gambarindicator)
                         <div class="row justify-content-center">
                             <div class="col-auto">
-                                <img src="{{ asset($this->gambar) }}" alt="Foto Pengaduan" class="img-fluid" width="300">
+                                <img src="{{ asset($this->gambar) }}" alt="Foto Pengaduan" class="img-fluid"
+                                    width="300">
                             </div>
                         </div>
                     @elseif($tindaklanjutindicator)
@@ -160,7 +159,7 @@
                                                 </div>
                                             @endif
                                             <p>
-                                                {{ $tanggapan->tinjauan }}
+                                                {{ $tanggapan->tindakan_korektif }}
                                             </p>
                                         </div>
                                     </div>

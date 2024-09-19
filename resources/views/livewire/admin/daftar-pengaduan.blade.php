@@ -1,7 +1,7 @@
 <div>
     <div class="row justify-content-between mb-3">
         <div class="col-auto ms-3">
-            <h3>Laporan</h3>
+            <h3>Laporan {{ $tentangcrud }}</h3>
         </div>
         <div class="col-auto">
             <div class="input-group mb-3">
@@ -26,10 +26,22 @@
             <table class="table table-striped table-hover table-sm" style="font-size: 0.9rem;">
                 <thead class="text-center">
                     <tr>
-                        <th class="align-middle bg-secondary-subtle">Tanggal Pengaduan</th>
-                        <th class="align-middle bg-secondary-subtle">Identitas Pengadu</th>
-                        <th class="align-middle bg-secondary-subtle">Kategori Pengaduan</th>
-                        <th class="align-middle bg-secondary-subtle">Isi Pengaduan</th>
+                        @if ($tentangcrud == 'Permintaan Informasi')
+                            <th class="align-middle bg-secondary-subtle">Tanggal Permintaan</th>
+                            <th class="align-middle bg-secondary-subtle">Identitas</th>
+                            <th class="align-middle bg-secondary-subtle">Kategori</th>
+                            <th class="align-middle bg-secondary-subtle">Isi Permintaan</th>
+                        @elseif($tentangcrud == 'Saran')
+                            <th class="align-middle bg-secondary-subtle">Tanggal Penyampaian</th>
+                            <th class="align-middle bg-secondary-subtle">Identitas</th>
+                            <th class="align-middle bg-secondary-subtle">Kategori</th>
+                            <th class="align-middle bg-secondary-subtle">Isi Saran</th>
+                        @else
+                            <th class="align-middle bg-secondary-subtle">Tanggal Pengaduan</th>
+                            <th class="align-middle bg-secondary-subtle">Identitas Pengadu</th>
+                            <th class="align-middle bg-secondary-subtle">Kategori Pengaduan</th>
+                            <th class="align-middle bg-secondary-subtle">Isi Pengaduan</th>
+                        @endif
                         <th class="align-middle bg-secondary-subtle">Informasi Tambahan</th>
                         <th class="align-middle bg-secondary-subtle">Tindakan</th>
                     </tr>
@@ -38,8 +50,8 @@
                     @forelse ($pengaduans as $pengaduan)
                         <tr>
 
-                            <td class="align-middle">{{ $pengaduan->tanggal_pengaduan }}</td>
-                            <td class="align-middle">
+                            <td class="align-middle text-center">{{ $pengaduan->tanggal_pengaduan }}</td>
+                            <td class="align-middle text-center">
                                 @if ($pengaduan->identitas_pengaduan == 'Lengkap')
                                     <a href="javascript:void(0)" class="btn btn-outline-primary btn-sm"
                                         data-bs-toggle="modal" data-bs-target="#UnivModal"
@@ -50,7 +62,7 @@
                                     {{ $pengaduan->identitas_pengaduan }}
                                 @endif
                             </td>
-                            <td class="align-middle">
+                            <td class="align-middle text-center">
                                 <div class="row">
                                     <div class="col">
                                         {{ $pengaduan->jenis_layanan }}
@@ -89,16 +101,16 @@
                                 <div class="row text-center">
                                     <div class="col">
                                         @if ($pengaduan->tindaklanjuts->count() != 0)
-                                            <a href="javascript:void(0)"
-                                                class="link-offset-2 link-underline link-underline-opacity-0 text-success"
-                                                data-bs-toggle="modal" data-bs-target="#UnivModal"
+                                            <a href="javascript:void(0)" class="text-success"
+                                                style="text-decoration: none;" data-bs-toggle="modal"
+                                                data-bs-target="#UnivModal"
                                                 wire:click='showTindakan({{ $pengaduan->id }})'>
                                                 <i class="fa-regular fa-circle-check"></i><br>
                                                 <small>Sudah Ditindak Lanjuti</small>
                                             </a>
                                         @else
-                                            <a href="javascript:void(0)"
-                                                class="link-offset-2 link-underline link-underline-opacity-0 text-danger">
+                                            <a href="javascript:void(0)" class="text-danger"
+                                                style="text-decoration: none;">
                                                 <i class="fa-regular fa-circle-xmark"></i><br>
                                                 <small>Belum Ada Tindakan</small>
                                             </a>
@@ -286,7 +298,7 @@
                                                 </div>
                                             @endif
                                             <p>
-                                                {{ $tanggapan->tinjauan }}
+                                                {{ $tanggapan->tindakan_korektif }}
                                             </p>
                                         </div>
                                     </div>

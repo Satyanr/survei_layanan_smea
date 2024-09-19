@@ -89,7 +89,13 @@
 
                 <div class="row px-5">
                     <div class="col mb-3">
-                        <label class="form-label"><strong> Tindakan Korektif </strong> <br> <small class="text-secondary">( muncul di
+                        <label class="form-label"><strong>
+                                @if ($pengaduan->tentang == 'Permintaan Informasi')
+                                    Jawaban
+                                @else
+                                    Tindakan Korektif
+                                @endif
+                            </strong> <br> <small class="text-secondary">( muncul di
                                 keterangan tindakan )</small></label>
                         <textarea wire:model='tinkor' class="form-control @error('tinkor') is-invalid @enderror" rows="2"></textarea>
                         @error('tinkor')
@@ -101,11 +107,7 @@
 
                     <div class="col mb-3">
                         <label class="form-label"><strong>
-                                @if ($pengaduan->tentang == 'Permintaan Informasi')
-                                    Jawaban
-                                @else
-                                    Tinjauan
-                                @endif
+                                Tinjauan
                             </strong> <br> <small class="text-secondary">( wajib di isi )</small></label>
                         <textarea wire:model='tinjauan' class="form-control @error('tinjauan') is-invalid @enderror" rows="2"></textarea>
                         @error('tinjauan')
