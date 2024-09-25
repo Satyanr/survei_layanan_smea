@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class ImpersonateController extends Controller
 {
-    public function impersonate(User $user)
+    public function impersonate($encryptedUserId)
     {
+        $userId = Crypt::decrypt($encryptedUserId);
+        $user = User::findOrFail($userId);
+
         session()->put('original_user_id', auth()->id());
 
         auth()->login($user);

@@ -55,7 +55,7 @@
                                 @if ($pengaduan->identitas_pengaduan == 'Lengkap')
                                     <a href="javascript:void(0)" class="btn btn-outline-primary btn-sm"
                                         data-bs-toggle="modal" data-bs-target="#UnivModal"
-                                        wire:click='showIdentitas({{ $pengaduan->id }})'>
+                                        wire:click="showIdentitas('{{ Crypt::encrypt($pengaduan->id) }}')">
                                         {{ $pengaduan->identitas_pengaduan }}
                                     </a>
                                 @else
@@ -83,7 +83,7 @@
                                 @if (strlen($pengaduan->isi_pengaduan) > 20)
                                     <a href="javascript:void(0)"
                                         class="btn btn-outline-primary d-flex flex-column btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#UnivModal" wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
+                                        data-bs-target="#UnivModal" wire:click="showIsiPengaduan('{{ Crypt::encrypt($pengaduan->id) }}')">
                                         <div class="d-inline-block text-truncate" style="max-width: 150px;">
                                             {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
@@ -91,7 +91,7 @@
                                     <a href="javascript:void(0)"
                                         class="btn btn-outline-primary d-flex flex-column btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#UnivModal"
-                                        wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
+                                        wire:click="showIsiPengaduan('{{ Crypt::encrypt($pengaduan->id) }}')">
                                         <div class="d-inline-block" style="max-width: 150px;">
                                             {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
@@ -104,7 +104,7 @@
                                             <a href="javascript:void(0)" class="text-success"
                                                 style="text-decoration: none;" data-bs-toggle="modal"
                                                 data-bs-target="#UnivModal"
-                                                wire:click='showTindakan({{ $pengaduan->id }})'>
+                                                wire:click="showTindakan('{{ Crypt::encrypt($pengaduan->id) }}')">
                                                 <i class="fa-regular fa-circle-check"></i><br>
                                                 <small>Sudah Ditindak Lanjuti</small>
                                             </a>
@@ -120,7 +120,7 @@
                                         <div class="col">
                                             <a href="javascript:void(0)" class="btn btn-outline-success border-0"
                                                 data-bs-toggle="modal" data-bs-target="#UnivModal"
-                                                wire:click='showGambar({{ $pengaduan->id }})'>
+                                                wire:click="showGambar('{{ Crypt::encrypt($pengaduan->id) }}')">
                                                 <i class="fa-regular fa-image"></i><br>
                                                 <small>Foto</small>
                                             </a>
@@ -140,7 +140,7 @@
                                     <a href="javascript:void(0)"
                                         class="btn btn-outline-{{ $isLinked ? 'success' : 'danger' }} d-flex flex-column btn-sm"
                                         data-bs-toggle="modal" data-bs-target="#ModalUnit"
-                                        wire:click='setidpengaduan({{ $pengaduan->id }})'>
+                                        wire:click="setidpengaduan('{{ Crypt::encrypt($pengaduan->id) }}')">
                                         <span class="w-100 h-100">
                                             @if ($isLinked)
                                                 <i class="fa-regular fa-circle-check"></i> <br> Sudah di teruskan
@@ -155,7 +155,7 @@
                                             $tindaklanjutExists = $linked->pengaduan->tindaklanjuts->isNotEmpty();
                                         @endphp
                                         @if ($linked->unitkerja->id == auth()->user()->id)
-                                            <a href="{{ route('admin.tindaklanjut', $pengaduan->id) }}"
+                                            <a href="{{ route('admin.tindaklanjut', Crypt::encrypt($pengaduan->id)) }}"
                                                 class="btn btn-outline-primary btn-sm">
                                                 <i class="fa-regular fa-note-sticky"></i> <br>
                                                 @if ($tindaklanjutExists)
@@ -284,7 +284,7 @@
                                                 <div class="col-auto">
                                                     <a href="javascript:void(0)"
                                                         class="btn btn-outline-danger border-0 btn-sm"
-                                                        wire:click='destroyTindakan({{ $tanggapan->id }})'>
+                                                        wire:click="destroyTindakan('{{ Crypt::encrypt($tanggapan->id) }}')">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
                                                 </div>

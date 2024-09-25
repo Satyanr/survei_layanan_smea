@@ -220,16 +220,16 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item" href="javascript:void(0)"
-                                                        wire:click='edit({{ $pengguna->id }})'><i
+                                                        wire:click="edit('{{ Crypt::encrypt($pengguna->id) }}')"><i
                                                             class="fa-solid fa-pencil"></i> Edit</a>
                                                 </li>
                                                 <li>
                                                     <a class="dropdown-item text-success"
-                                                        href="{{ route('admin.impersonate', $pengguna) }}"><i
+                                                        href="{{ route('admin.impersonate', Crypt::encrypt($pengguna->id)) }}"><i
                                                             class="fa-solid fa-right-to-bracket"></i> Masuk</a>
                                                 </li>
                                                 <li><a class="dropdown-item text-danger" href="javascript:void(0)"
-                                                        wire:click.prevent="delete({{ $pengguna->id }})"><i
+                                                        wire:click.prevent="delete('{{ Crypt::encrypt($pengguna->id) }}')"><i
                                                             class="fa-solid fa-trash"></i> Hapus</a></li>
 
                                             </ul>

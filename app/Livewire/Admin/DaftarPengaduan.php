@@ -8,6 +8,7 @@ use App\Models\Pengaduan;
 use Livewire\WithPagination;
 use App\Models\PengaduanLink;
 use App\Models\LaporanTindakLanjut;
+use Illuminate\Support\Facades\Crypt;
 
 class DaftarPengaduan extends Component
 {
@@ -37,17 +38,19 @@ class DaftarPengaduan extends Component
     public function render()
     {
         $searchlaporan = '%' . $this->searchlaporan . '%';
-        if(auth()->user()->role == 'UnitKerja'){
-            $pengaduans =  Pengaduan::where('isi_pengaduan', 'LIKE', $searchlaporan)->where('tentang', $this->tentangcrud)
-            ->whereHas('pengaduanLinks', function ($query) {
-                $query->where('user_id', auth()->user()->id);
-            })
-            ->orderBy('id', 'DESC')
-            ->paginate(6, ['*'], 'Page');  
-        }else{
-            $pengaduans =  Pengaduan::where('isi_pengaduan', 'LIKE', $searchlaporan)->where('tentang', $this->tentangcrud)
-            ->orderBy('id', 'DESC')
-            ->paginate(6, ['*'], 'Page');
+        if (auth()->user()->role == 'UnitKerja') {
+            $pengaduans = Pengaduan::where('isi_pengaduan', 'LIKE', $searchlaporan)
+                ->where('tentang', $this->tentangcrud)
+                ->whereHas('pengaduanLinks', function ($query) {
+                    $query->where('user_id', auth()->user()->id);
+                })
+                ->orderBy('id', 'DESC')
+                ->paginate(6, ['*'], 'Page');
+        } else {
+            $pengaduans = Pengaduan::where('isi_pengaduan', 'LIKE', $searchlaporan)
+                ->where('tentang', $this->tentangcrud)
+                ->orderBy('id', 'DESC')
+                ->paginate(6, ['*'], 'Page');
         }
         return view('livewire.admin.daftar-pengaduan', [
             'pengaduans' => $pengaduans,
@@ -57,6 +60,7 @@ class DaftarPengaduan extends Component
 
     public function setidpengaduan($id)
     {
+        $id = Crypt::decrypt($id);
         $this->idpengaduan = $id;
     }
 
@@ -77,7 +81,9 @@ class DaftarPengaduan extends Component
 
         foreach ($this->selectedUnits as $unitId => $value) {
             if ($value) {
-                $pengaduanLink = PengaduanLink::where('pengaduan_id', $pengaduan->id)->where('user_id', $unitId)->first();
+                $pengaduanLink = PengaduanLink::where('pengaduan_id', $pengaduan->id)
+                    ->where('user_id', $unitId)
+                    ->first();
                 if ($pengaduanLink) {
                     continue;
                 }
@@ -94,6 +100,7 @@ class DaftarPengaduan extends Component
 
     public function showIsiPengaduan($id)
     {
+        $id = Crypt::decrypt($id);
         $pengaduan = Pengaduan::find($id);
         $this->isipengaduan = $pengaduan->isi_pengaduan;
         $this->isitempat = $pengaduan->tempat;
@@ -107,6 +114,7 @@ class DaftarPengaduan extends Component
 
     public function showTindakan($id)
     {
+        $id = Crypt::decrypt($id);
         $this->tindaklanjut = LaporanTindakLanjut::where('pengaduan_id', $id)->get();
 
         $this->tindaklanjutindicator = true;
@@ -117,14 +125,16 @@ class DaftarPengaduan extends Component
 
     public function destroyTindakan($id)
     {
+        $id = Crypt::decrypt($id);
         $tindakan = LaporanTindakLanjut::find($id);
         $tindakan->delete();
         session()->flash('message', 'Tindakan Berhasil Dihapus');
-        return redirect()->to('/admin/daftar-pengaduan/'. $this->tentangcrud);
+        return redirect()->to('/admin/daftar-pengaduan/' . $this->tentangcrud);
     }
 
     public function showGambar($id)
     {
+        $id = Crypt::decrypt($id);
         $pengaduan = Pengaduan::find($id);
         $this->gambar = $pengaduan->bukti_foto;
 
@@ -136,6 +146,7 @@ class DaftarPengaduan extends Component
 
     public function showIdentitas($id)
     {
+        $id = Crypt::decrypt($id);
         $pengaduan = Pengaduan::find($id);
         $this->nama_pengadu = $pengaduan->nama_pengadu;
         $this->no_telp_pengadu = $pengaduan->no_telp_pengadu;

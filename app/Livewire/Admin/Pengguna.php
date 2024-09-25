@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\PengaduanLink;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\PengaduanLink;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class Pengguna extends Component
 {
@@ -27,7 +29,7 @@ class Pengguna extends Component
 
     public function updateRole()
     {
-        if ($this->role === 'UnitKerja'||$this->role == 0) {
+        if ($this->role === 'UnitKerja' || $this->role == 0) {
             $this->unitMode = true;
         } else {
             $this->unitMode = false;
@@ -99,17 +101,22 @@ class Pengguna extends Component
     }
     public function edit($id)
     {
+        try {
+            $idec = Crypt::decrypt($id);
+        } catch (DecryptException $e) {
+            
+        }
         $this->updateMode = true;
-        $this->user_id = $id;
-        $pengguna = User::where('id', $id)->first();
+        $this->user_id = $idec;
+        $pengguna = User::where('id', $idec)->first();
         $this->name = $pengguna->name;
         $this->email = $pengguna->email;
         $this->role = $pengguna->role;
         $this->kode_unit = $pengguna->kode_unit;
         $this->penjab = $pengguna->penanggung_jawab;
         $this->nip = $pengguna->nip;
-        
-        if ($this->role === 'UnitKerja'||$this->role == 0) {
+
+        if ($this->role === 'UnitKerja' || $this->role == 0) {
             $this->unitMode = true;
         } else {
             $this->unitMode = false;
@@ -193,8 +200,14 @@ class Pengguna extends Component
     }
     public function delete($id)
     {
-        PengaduanLink::where('user_id', $id)->delete();
-        User::find($id)->delete();
+        try {
+            $idec = Crypt::decrypt($id);
+        } catch (DecryptException $e) {
+
+        }
+
+        PengaduanLink::where('user_id', $idec)->delete();
+        User::find($idec)->delete();
         session()->flash('message', 'Pengguna berhasil dihapus');
     }
 }

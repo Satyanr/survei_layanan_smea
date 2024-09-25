@@ -2,11 +2,12 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\SubKategoriLink;
 use Livewire\Component;
-use App\Models\Kategori as KategoriModel;
 use App\Models\SubKategori;
 use Livewire\WithPagination;
+use App\Models\SubKategoriLink;
+use Illuminate\Support\Facades\Crypt;
+use App\Models\Kategori as KategoriModel;
 
 class Kategori extends Component
 {
@@ -65,6 +66,7 @@ class Kategori extends Component
    
     public function destroyKategori($id)
     {
+        $id = Crypt::decrypt($id); 
         KategoriModel::find($id)->delete();
         session()->flash('message', 'Kategori berhasil dihapus');
     }

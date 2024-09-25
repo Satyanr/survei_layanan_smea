@@ -37,7 +37,7 @@ Route::get('/home', function () {
 Route::prefix('/admin')->group(function () {
     Route::controller(ImpersonateController::class)->group(function () {
         Route::middleware(['auth', 'user-access:SuperAdmin,Admin'])->group(function () {
-            Route::get('impersonate/{user}', 'impersonate')->name('admin.impersonate');
+            Route::get('impersonate/{encryptedUserId}', 'impersonate')->name('admin.impersonate');
         });
         Route::get('stop-impersonating', 'stopImpersonating')->name('admin.stop-impersonating');
     });
