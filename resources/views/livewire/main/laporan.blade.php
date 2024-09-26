@@ -49,14 +49,14 @@
                                 @if (strlen($pengaduan->isi_pengaduan) > 20)
                                     <a href="javascript:void(0)"
                                         class="btn btn-outline-primary d-flex flex-column btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#UnivModal" wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
+                                        data-bs-target="#UnivModal" wire:click="showIsiPengaduan('{{ Crypt::encrypt($pengaduan->id) }}')">
                                         <div class="text-dark d-inline-block text-truncate" style="max-width: 150px;">
                                             {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
                                 @else
                                     <a href="javascript:void(0)"
                                         class="btn btn-outline-primary d-flex flex-column btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#UnivModal" wire:click='showIsiPengaduan({{ $pengaduan->id }})'>
+                                        data-bs-target="#UnivModal" wire:click="showIsiPengaduan('{{ Crypt::encrypt($pengaduan->id) }}')">
                                         <div class="text-dark d-inline-block">
                                             {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
@@ -69,7 +69,7 @@
                                             <a href="javascript:void(0)" class="text-success"
                                                 style="text-decoration: none;" data-bs-toggle="modal"
                                                 data-bs-target="#UnivModal"
-                                                wire:click='showTindakan({{ $pengaduan->id }})'>
+                                                wire:click="showTindakan('{{ Crypt::encrypt($pengaduan->id) }}')">
                                                 <i class="fa-regular fa-circle-check"></i><br>
                                                 <small>Sudah Ada Jawaban</small>
                                             </a>
@@ -85,7 +85,7 @@
                                         <div class="col">
                                             <a href="javascript:void(0)" class="btn btn-outline-success border-0"
                                                 data-bs-toggle="modal" data-bs-target="#UnivModal"
-                                                wire:click='showGambar({{ $pengaduan->id }})'>
+                                                wire:click="showGambar('{{ Crypt::encrypt($pengaduan->id) }}')">
                                                 <i class="fa-regular fa-image"></i><br>
                                                 <small>Foto</small>
                                             </a>

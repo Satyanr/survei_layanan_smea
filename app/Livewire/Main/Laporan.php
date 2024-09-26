@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Main;
 
-use App\Models\LaporanTindakLanjut;
 use Livewire\Component;
 use App\Models\Pengaduan;
 use Livewire\WithPagination;
+use App\Models\LaporanTindakLanjut;
+use Illuminate\Support\Facades\Crypt;
 
 class Laporan extends Component
 {
@@ -41,6 +42,7 @@ class Laporan extends Component
 
     public function showIsiPengaduan($id)
     {
+        $id = Crypt::decrypt($id);
         $pengaduan = Pengaduan::find($id);
         $this->isipengaduan_laporan = $pengaduan->isi_pengaduan;
         $this->isitempat = $pengaduan->tempat;
@@ -55,6 +57,7 @@ class Laporan extends Component
 
     public function showTindakan($id)
     {
+        $id = Crypt::decrypt($id);
         $this->tindaklanjut = LaporanTindakLanjut::where('pengaduan_id', $id)->get();
 
         $this->tindaklanjutindicator = true;
@@ -65,6 +68,7 @@ class Laporan extends Component
 
     public function showGambar($id)
     {
+        $id = Crypt::decrypt($id);
         $pengaduan = Pengaduan::find($id);
         $this->gambar = $pengaduan->bukti_foto;
 
@@ -76,6 +80,7 @@ class Laporan extends Component
 
     public function showIdentitas($id)
     {
+        $id = Crypt::decrypt($id);
         $pengaduan = Pengaduan::find($id);
         $this->nama_pengadu = $pengaduan->nama_pengadu;
         $this->no_telp_pengadu = $pengaduan->no_telp_pengadu;
