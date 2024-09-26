@@ -21,8 +21,8 @@ class TindakLanjut extends Component
             if ($tinjut) {
                 $this->penyebab = $tinjut->penyebab;
                 $this->tinkor = $tinjut->tindakan_korektif;
-                $this->tinjauan = $tinjut->tinjauan;
-                $this->kesimpulan = $tinjut->kesimpulan;
+                // $this->tinjauan = $tinjut->tinjauan;
+                // $this->kesimpulan = $tinjut->kesimpulan;
                 $this->koreksi = $tinjut->koreksi;
             }
         }
@@ -34,13 +34,13 @@ class TindakLanjut extends Component
         $this->validate(
             [
                 'tinkor' => 'required',
-                'tinjauan' => 'required',
-                'kesimpulan' => 'required',
+                // 'tinjauan' => 'required',
+                // 'kesimpulan' => 'required',
             ],
             [
                 'tinkor.required' => 'Tindakan korektif tidak boleh kosong',
-                'tinjauan.required' => 'Tinjauan tidak boleh kosong',
-                'kesimpulan.required' => 'Kesimpulan tidak boleh kosong',
+                // 'tinjauan.required' => 'Tinjauan tidak boleh kosong',
+                // 'kesimpulan.required' => 'Kesimpulan tidak boleh kosong',
             ],
         );
 
@@ -72,9 +72,9 @@ class TindakLanjut extends Component
                     ->update([
                         'penyebab' => $this->penyebab,
                         'tindakan_korektif' => $this->tinkor,
-                        'tinjauan' => $this->tinjauan,
+                        // 'tinjauan' => $this->tinjauan,
                         'koreksi' => $this->koreksi,
-                        'kesimpulan' => $this->kesimpulan,
+                        // 'kesimpulan' => $this->kesimpulan,
                         'bukti_foto' => 'storage/tindakan_img/' . $filename,
                     ]);
             } else {
@@ -94,9 +94,9 @@ class TindakLanjut extends Component
                         ->update([
                             'penyebab' => $this->penyebab,
                             'tindakan_korektif' => $this->tinkor,
-                            'tinjauan' => $this->tinjauan,
+                            // 'tinjauan' => $this->tinjauan,
                             'koreksi' => $this->koreksi,
-                            'kesimpulan' => $this->kesimpulan,
+                            // 'kesimpulan' => $this->kesimpulan,
                             'bukti_foto' => 'storage/tindakan_img/' . $filename,
                         ]);
                 } else {
@@ -105,9 +105,9 @@ class TindakLanjut extends Component
                         ->update([
                             'penyebab' => $this->penyebab,
                             'tindakan_korektif' => $this->tinkor,
-                            'tinjauan' => $this->tinjauan,
+                            // 'tinjauan' => $this->tinjauan,
                             'koreksi' => $this->koreksi,
-                            'kesimpulan' => $this->kesimpulan,
+                            // 'kesimpulan' => $this->kesimpulan,
                         ]);
                 }
             }
@@ -135,9 +135,9 @@ class TindakLanjut extends Component
                         'user_id' => auth()->user()->id,
                         'penyebab' => $this->penyebab,
                         'tindakan_korektif' => $this->tinkor,
-                        'tinjauan' => $this->tinjauan,
+                        // 'tinjauan' => $this->tinjauan,
                         'koreksi' => $this->koreksi,
-                        'kesimpulan' => $this->kesimpulan,
+                        // 'kesimpulan' => $this->kesimpulan,
                         'bukti_foto' => 'storage/tindakan_img/' . $filename,
                     ]);
             } else {
@@ -157,9 +157,9 @@ class TindakLanjut extends Component
                         'user_id' => auth()->user()->id,
                         'penyebab' => $this->penyebab,
                         'tindakan_korektif' => $this->tinkor,
-                        'tinjauan' => $this->tinjauan,
+                        // 'tinjauan' => $this->tinjauan,
                         'koreksi' => $this->koreksi,
-                        'kesimpulan' => $this->kesimpulan,
+                        // 'kesimpulan' => $this->kesimpulan,
                         'bukti_foto' => 'storage/tindakan_img/' . $filename,
                     ]);
                 } else {
@@ -168,9 +168,9 @@ class TindakLanjut extends Component
                         'user_id' => auth()->user()->id,
                         'penyebab' => $this->penyebab,
                         'tindakan_korektif' => $this->tinkor,
-                        'tinjauan' => $this->tinjauan,
+                        // 'tinjauan' => $this->tinjauan,
                         'koreksi' => $this->koreksi,
-                        'kesimpulan' => $this->kesimpulan,
+                        // 'kesimpulan' => $this->kesimpulan,
                     ]);
                 }
             }

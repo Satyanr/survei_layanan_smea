@@ -93,10 +93,9 @@
                                 @if ($pengaduan->tentang == 'Permintaan Informasi')
                                     Jawaban
                                 @else
-                                    Tindakan Korektif
+                                    Tindakan
                                 @endif
-                            </strong> <br> <small class="text-secondary">( muncul di
-                                keterangan tindakan )</small></label>
+                            </strong></label>
                         <textarea wire:model='tinkor' class="form-control @error('tinkor') is-invalid @enderror" rows="2"></textarea>
                         @error('tinkor')
                             <div class="invalid-feedback">
@@ -105,7 +104,7 @@
                         @enderror
                     </div>
 
-                    <div class="col mb-3">
+                    {{-- <div class="col mb-3">
                         <label class="form-label"><strong>
                                 Tinjauan
                             </strong> <br> <small class="text-secondary">( wajib di isi )</small></label>
@@ -115,9 +114,9 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div>
+                    </div> --}}
                 </div>
-                <div class="row px-5">
+                {{-- <div class="row px-5">
                     <div class="col mb-3">
                         <label class="form-label"><strong> Kesimpulan </strong></label>
                         <textarea wire:model='kesimpulan' class="form-control @error('kesimpulan') is-invalid @enderror" rows="2"></textarea>
@@ -127,7 +126,7 @@
                             </div>
                         @enderror
                     </div>
-                </div>
+                </div> --}}
                 <div class="row justify-content-between px-5">
                     <div class="col-auto text-center mt-2">
                         <a href="{{ route('admin.daftarpengaduan', $pengaduan->tentang) }}"
