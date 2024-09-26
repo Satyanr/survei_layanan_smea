@@ -161,8 +161,14 @@
                                     </h2>
                                     <div id="collapse{{ $tanggapan->id }}" class="accordion-collapse collapse show"
                                         data-bs-parent="#accordionExample">
-                                        <div class="accordion-body text-center">
+                                        <div class="accordion-body ps-2">
+                                            <h6>Jawaban:</h6>
+                                            <p>
+                                                {{ $tanggapan->tindakan_korektif }}
+                                            </p>
+
                                             @if ($tanggapan->bukti_foto)
+                                                <h6>Keterangan Tambahan</h6>
                                                 <div class="row justify-content-center">
                                                     <div class="col-auto w-25">
                                                         <img src="{{ asset($tanggapan->bukti_foto) }}"
@@ -170,9 +176,6 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <p>
-                                                {{ $tanggapan->tindakan_korektif }}
-                                            </p>
                                         </div>
                                     </div>
                                 </div>

@@ -3,5 +3,4 @@
         <div></div>
         <div></div>
     </div>
-    <div class="loading-overlay__text">Loading...</div>
 </div>

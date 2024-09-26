@@ -18,8 +18,6 @@ return new class extends Migration
             $table->text('penyebab')->nullable();
             $table->text('koreksi')->nullable();
             $table->text('tindakan_korektif')->nullable();
-            $table->text('tinjauan')->nullable();
-            $table->text('kesimpulan')->nullable();
             $table->string('bukti_foto')->nullable();
             $table->timestamps();
         });

@@ -291,7 +291,7 @@
                                     </h2>
                                     <div id="collapse{{ $tanggapan->id }}" class="accordion-collapse collapse show"
                                         data-bs-parent="#accordionExample">
-                                        <div class="accordion-body text-center">
+                                        <div class="accordion-body ps-2">
                                             <div class="row justify-content-end">
                                                 <div class="col-auto">
                                                     <a href="javascript:void(0)"
@@ -301,7 +301,17 @@
                                                     </a>
                                                 </div>
                                             </div>
+                                            @if ($tentangcrud == 'Permintaan Informasi')
+                                                <h6>Jawaban:</h6>
+                                            @else
+                                                <h6>Tindakan:</h6>
+                                            @endif
+                                            <p>
+                                                {{ $tanggapan->tindakan_korektif }}
+                                            </p>
+
                                             @if ($tanggapan->bukti_foto)
+                                                <h6>Keterangan Tambahan</h6>
                                                 <div class="row justify-content-center">
                                                     <div class="col-auto w-25">
                                                         <img src="{{ asset($tanggapan->bukti_foto) }}"
@@ -309,9 +319,6 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            <p>
-                                                {{ $tanggapan->tindakan_korektif }}
-                                            </p>
                                         </div>
                                     </div>
                                 </div>
