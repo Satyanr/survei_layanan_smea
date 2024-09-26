@@ -14,7 +14,7 @@ class DaftarPengaduan extends Component
 {
     public $searchlaporan, $isipengaduan, $gambar, $nama_pengadu, $isitempat, $isijumlah, $no_telp_pengadu, $email_pengadu, $tindaklanjut, $idpengaduan, $selectedUnits, $tentangcrud;
     public $isipengaduanindicator = false,
-        $gambarindicator = false,
+        // $gambarindicator = false,
         $identitasindicator = false,
         $tindaklanjutindicator = false;
 
@@ -105,9 +105,14 @@ class DaftarPengaduan extends Component
         $this->isipengaduan = $pengaduan->isi_pengaduan;
         $this->isitempat = $pengaduan->tempat;
         $this->isijumlah = $pengaduan->jumlah;
+        $this->gambar = '';
+
+        if ($pengaduan->bukti_foto) {
+            $this->gambar = $pengaduan->bukti_foto;
+        }
 
         $this->isipengaduanindicator = true;
-        $this->gambarindicator = false;
+        // $this->gambarindicator = false;
         $this->identitasindicator = false;
         $this->tindaklanjutindicator = false;
     }
@@ -119,7 +124,7 @@ class DaftarPengaduan extends Component
 
         $this->tindaklanjutindicator = true;
         $this->isipengaduanindicator = false;
-        $this->gambarindicator = false;
+        // $this->gambarindicator = false;
         $this->identitasindicator = false;
     }
 
@@ -132,17 +137,17 @@ class DaftarPengaduan extends Component
         return redirect()->to('/admin/daftar-pengaduan/' . $this->tentangcrud);
     }
 
-    public function showGambar($id)
-    {
-        $id = Crypt::decrypt($id);
-        $pengaduan = Pengaduan::find($id);
-        $this->gambar = $pengaduan->bukti_foto;
+    // public function showGambar($id)
+    // {
+    //     $id = Crypt::decrypt($id);
+    //     $pengaduan = Pengaduan::find($id);
+    //     $this->gambar = $pengaduan->bukti_foto;
 
-        $this->isipengaduanindicator = false;
-        $this->gambarindicator = true;
-        $this->identitasindicator = false;
-        $this->tindaklanjutindicator = false;
-    }
+    //     $this->isipengaduanindicator = false;
+    //     $this->gambarindicator = true;
+    //     $this->identitasindicator = false;
+    //     $this->tindaklanjutindicator = false;
+    // }
 
     public function showIdentitas($id)
     {
@@ -153,7 +158,7 @@ class DaftarPengaduan extends Component
         $this->email_pengadu = $pengaduan->email_pengadu;
 
         $this->isipengaduanindicator = false;
-        $this->gambarindicator = false;
+        // $this->gambarindicator = false;
         $this->identitasindicator = true;
         $this->tindaklanjutindicator = false;
     }

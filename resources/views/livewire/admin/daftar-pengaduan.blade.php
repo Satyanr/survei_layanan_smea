@@ -83,7 +83,8 @@
                                 @if (strlen($pengaduan->isi_pengaduan) > 20)
                                     <a href="javascript:void(0)"
                                         class="btn btn-outline-primary d-flex flex-column btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#UnivModal" wire:click="showIsiPengaduan('{{ Crypt::encrypt($pengaduan->id) }}')">
+                                        data-bs-target="#UnivModal"
+                                        wire:click="showIsiPengaduan('{{ Crypt::encrypt($pengaduan->id) }}')">
                                         <div class="d-inline-block text-truncate" style="max-width: 150px;">
                                             {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
@@ -116,7 +117,7 @@
                                             </a>
                                         @endif
                                     </div>
-                                    @if ($pengaduan->bukti_foto)
+                                    {{-- @if ($pengaduan->bukti_foto)
                                         <div class="col">
                                             <a href="javascript:void(0)" class="btn btn-outline-success border-0"
                                                 data-bs-toggle="modal" data-bs-target="#UnivModal"
@@ -125,7 +126,7 @@
                                                 <small>Foto</small>
                                             </a>
                                         </div>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </td>
                             <td class="align-middle">
@@ -243,6 +244,17 @@
                         <p class="text-break">
                             {{ $this->isipengaduan }}
                         </p>
+
+                        @if ($this->gambar)
+                            <h6>Keterangan Tambahan:</h6>
+
+                            <div class="row justify-content-center">
+                                <div class="col-auto">
+                                    <img src="{{ asset($this->gambar) }}" alt="Foto Pengaduan" class="img-fluid"
+                                        width="300">
+                                </div>
+                            </div>
+                        @endif
                     @elseif($identitasindicator)
                         <div class="row">
                             <div class="col">
@@ -259,13 +271,13 @@
                                 Email: {{ $this->email_pengadu }}
                             </div>
                         </div>
-                    @elseif($gambarindicator)
+                        {{-- @elseif($gambarindicator)
                         <div class="row justify-content-center">
                             <div class="col-auto">
                                 <img src="{{ asset($this->gambar) }}" alt="Foto Pengaduan" class="img-fluid"
                                     width="300">
                             </div>
-                        </div>
+                        </div> --}}
                     @elseif($tindaklanjutindicator)
                         <div class="accordion" id="accordionExample">
                             @foreach ($tindaklanjut as $tanggapan)
@@ -306,7 +318,7 @@
                             @endforeach
                         </div>
                     @else
-                        Nothings New
+                        Memuat Data...
                     @endif
                 </div>
             </div>

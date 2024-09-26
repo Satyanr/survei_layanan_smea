@@ -12,7 +12,7 @@ class Laporan extends Component
 {
     public $searchlaporan, $isipengaduan, $isipengaduan_laporan, $isitempat, $isijumlah, $gambar, $nama_pengadu, $no_telp_pengadu, $email_pengadu, $tindaklanjut;
     public $isipengaduanindicator = false,
-        $gambarindicator = false,
+        // $gambarindicator = false,
         $identitasindicator = false,
         $tindaklanjutindicator = false;
 
@@ -47,10 +47,15 @@ class Laporan extends Component
         $this->isipengaduan_laporan = $pengaduan->isi_pengaduan;
         $this->isitempat = $pengaduan->tempat;
         $this->isijumlah = $pengaduan->jumlah;
+        $this->gambar = '';
+
+        if ($pengaduan->bukti_foto) {
+            $this->gambar = $pengaduan->bukti_foto;
+        }
 
 
         $this->isipengaduanindicator = true;
-        $this->gambarindicator = false;
+        // $this->gambarindicator = false;
         $this->identitasindicator = false;
         $this->tindaklanjutindicator = false;
     }
@@ -62,21 +67,21 @@ class Laporan extends Component
 
         $this->tindaklanjutindicator = true;
         $this->isipengaduanindicator = false;
-        $this->gambarindicator = false;
+        // $this->gambarindicator = false;
         $this->identitasindicator = false;
     }
 
-    public function showGambar($id)
-    {
-        $id = Crypt::decrypt($id);
-        $pengaduan = Pengaduan::find($id);
-        $this->gambar = $pengaduan->bukti_foto;
+    // public function showGambar($id)
+    // {
+    //     $id = Crypt::decrypt($id);
+    //     $pengaduan = Pengaduan::find($id);
+    //     $this->gambar = $pengaduan->bukti_foto;
 
-        $this->isipengaduanindicator = false;
-        $this->gambarindicator = true;
-        $this->identitasindicator = false;
-        $this->tindaklanjutindicator = false;
-    }
+    //     $this->isipengaduanindicator = false;
+    //     $this->gambarindicator = true;
+    //     $this->identitasindicator = false;
+    //     $this->tindaklanjutindicator = false;
+    // }
 
     public function showIdentitas($id)
     {
@@ -87,7 +92,7 @@ class Laporan extends Component
         $this->email_pengadu = $pengaduan->email_pengadu;
 
         $this->isipengaduanindicator = false;
-        $this->gambarindicator = false;
+        // $this->gambarindicator = false;
         $this->identitasindicator = true;
         $this->tindaklanjutindicator = false;
     }
