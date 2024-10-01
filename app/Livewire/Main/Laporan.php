@@ -33,8 +33,10 @@ class Laporan extends Component
     {
         $searchlaporan = '%' . $this->searchlaporan . '%';
         return view('livewire.main.laporan', [
-            'pengaduans' => Pengaduan::where('isi_pengaduan', 'LIKE', $searchlaporan)
-                ->where('tentang', '=', 'Permintaan Informasi')
+            'pengaduans' => Pengaduan::where('tentang', '=', 'Permintaan Informasi')
+                ->where(function ($query) use ($searchlaporan) {
+                    $query->where('isi_pengaduan', 'LIKE', $searchlaporan)->orWhere('kategori', 'LIKE', $searchlaporan);
+                })
                 ->orderBy('id', 'DESC')
                 ->paginate(6, ['*'], 'Page'),
         ]);
@@ -52,7 +54,6 @@ class Laporan extends Component
         if ($pengaduan->bukti_foto) {
             $this->gambar = $pengaduan->bukti_foto;
         }
-
 
         $this->isipengaduanindicator = true;
         // $this->gambarindicator = false;
