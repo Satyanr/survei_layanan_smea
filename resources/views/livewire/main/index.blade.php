@@ -178,7 +178,10 @@
                                 @else
                                     Jika Ada
                                 @endif
-                            </strong></label>
+                            </strong><small><a href="javascript:void(0)" id="popoverElement" data-bs-toggle="popover"
+                                    data-bs-title="Persetujuan Pengunggahan Foto"
+                                    data-bs-content="Foto yang Anda unggah dapat diakses oleh publik dan dapat dilihat oleh pengguna lain tanpa batasan. Harap untuk mensensor data penting sebelum mengunggah foto."><i
+                                        class="fa-solid fa-circle-info text-warning"></i></a></small></label>
                     </div>
                 </div>
                 <div class="row">
