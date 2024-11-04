@@ -64,5 +64,5 @@ Route::prefix('/admin')->group(function () {
 
 Route::controller(Controller::class)->group(function () {
     Route::get('/', 'index')->name('main.index');
-    Route::get('/laporan', 'laporan')->name('main.laporan');
+    Route::get('/informasi', 'laporan')->name('main.laporan');
 });

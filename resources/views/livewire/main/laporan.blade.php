@@ -1,8 +1,10 @@
 <div>
-    <div class="row justify-content-between mb-3">
+    <div class="row justify-content-center mb-3">
         <div class="col-auto ms-3">
             <h3>Permintaan Informasi</h3>
         </div>
+    </div>
+    <div class="row">
         <div class="col-auto">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
@@ -11,47 +13,23 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col table-responsive">
-            <table class="table table-striped table-hover table-sm" style="font-size: 0.9rem;">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Tanggal Permintaan</th>
-                        <th>Kategori</th>
-                        <th>Isi Permintaan</th>
-                        <th class="text-center">Informasi Tambahan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($pengaduans as $pengaduan)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $pengaduan->tanggal_pengaduan }}</td>
-                            <td>
-                                <div class="row">
-                                    <div class="col">
-                                        {{ $pengaduan->jenis_layanan }}
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        {{ $pengaduan->kategori }}
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        {{ $pengaduan->sub_kategori }}
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                @if (strlen($pengaduan->isi_pengaduan) > 20)
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        @forelse ($pengaduans as $pengaduan)
+            <div class="col">
+                <div class="card h-100 mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $pengaduan->kategori }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ $pengaduan->tanggal_pengaduan }}
+                                </h6>
+                                @if (strlen($pengaduan->isi_pengaduan) > 100)
                                     <a href="javascript:void(0)"
                                         class="btn btn-outline-primary d-flex flex-column btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#UnivModal"
                                         wire:click="showIsiPengaduan('{{ Crypt::encrypt($pengaduan->id) }}')">
-                                        <div class="text-dark d-inline-block text-truncate" style="max-width: 150px;">
+                                        <div class="text-dark d-inline-block text-truncate text-start"
+                                            style="max-width: 150px;">
                                             {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
                                 @else
@@ -59,47 +37,35 @@
                                         class="btn btn-outline-primary d-flex flex-column btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#UnivModal"
                                         wire:click="showIsiPengaduan('{{ Crypt::encrypt($pengaduan->id) }}')">
-                                        <div class="text-dark d-inline-block">
+                                        <div class="text-dark d-inline-block text-start">
                                             {{ $pengaduan->isi_pengaduan }}</div>
                                     </a>
                                 @endif
-                            </td>
-                            <td>
-                                <div class="row text-center">
-                                    <div class="col">
-                                        @if ($pengaduan->tindaklanjuts->count() != 0)
-                                            <a href="javascript:void(0)" class="text-success"
-                                                style="text-decoration: none;" data-bs-toggle="modal"
-                                                data-bs-target="#UnivModal"
-                                                wire:click="showTindakan('{{ Crypt::encrypt($pengaduan->id) }}')">
-                                                <i class="fa-regular fa-circle-check"></i><br>
-                                                <small>Sudah Ada Jawaban</small>
-                                            </a>
-                                        @else
-                                            <a href="javascript:void(0)" class="text-danger"
-                                                style="text-decoration: none;">
-                                                <i class="fa-regular fa-circle-xmark"></i><br>
-                                                <small>Belum Ada Jawaban</small>
-                                            </a>
-                                        @endif
-                                    </div>
-                                    {{-- @if ($pengaduan->bukti_foto)
-                                        <div class="col">
-                                            <a href="javascript:void(0)" class="btn btn-outline-success border-0"
-                                                data-bs-toggle="modal" data-bs-target="#UnivModal"
-                                                wire:click="showGambar('{{ Crypt::encrypt($pengaduan->id) }}')">
-                                                <i class="fa-regular fa-image"></i><br>
-                                                <small>Foto</small>
-                                            </a>
-                                        </div>
-                                    @endif --}}
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                            </div>
+                        </div>
+                        <div class="col text-center m-auto">
+                            @if ($pengaduan->tindaklanjuts->count() != 0)
+                                <a href="javascript:void(0)" class="text-success m-auto" style="text-decoration: none;"
+                                    data-bs-toggle="modal" data-bs-target="#UnivModal"
+                                    wire:click="showTindakan('{{ Crypt::encrypt($pengaduan->id) }}')">
+                                    <i class="fa-regular fa-circle-check"></i><br>
+                                    <small>Sudah Ada Jawaban</small>
+                                </a>
+                            @else
+                                <a href="javascript:void(0)" class="text-danger" style="text-decoration: none;">
+                                    <i class="fa-regular fa-circle-xmark"></i><br>
+                                    <small>Belum Ada Jawaban</small>
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="col">
+                <h3 class="text-center">Belum Ada Permintaan Informasi</h3>
+            </div>
+        @endforelse
     </div>
     <div class="row justify-content-center">
         <div class="col-auto">
