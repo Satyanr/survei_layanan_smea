@@ -130,7 +130,7 @@
             
             setTimeout(() => {
                 popover.hide();
-            }, 9000);
+            }, 15000);
         });
     </script>
 @endpush
