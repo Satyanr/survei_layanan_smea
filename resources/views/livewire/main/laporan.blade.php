@@ -62,7 +62,7 @@
                 </div>
             </div>
         @empty
-            <div class="col">
+            <div class="col m-auto my-5">
                 <h3 class="text-center">Belum Ada Permintaan Informasi</h3>
             </div>
         @endforelse
