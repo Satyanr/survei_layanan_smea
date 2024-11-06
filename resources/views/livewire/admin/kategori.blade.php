@@ -70,7 +70,7 @@
                                     <td>{{ $kategori->kode_kategori }}</td>
                                     <td>{{ $kategori->nama }}</td>
                                     <td class="text-danger"><a href="javascript:void(0)" class="text-danger"
-                                            wire:click.prevent="destroyKategori('{{ Crypt::encrypt($kategori->id) }}')"><i
+                                            wire:click.prevent="destroyKategori('{{ Crypt::encrypt($kategori->id) }}')" wire:confirm="Hapus data ini ?"><i
                                                 class="fa fa-trash"></i></a></td>
                                 </tr>
                             @endforeach

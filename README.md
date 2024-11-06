@@ -1,3 +1,12 @@
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `kode_unit`, `penanggung_jawab`, `nip`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Satya', 'satyanr84@gmail.com', NULL, '$2y$10$7/sF.c2LXCHdUqWxDIK0qOZ.ACZjPpI5JT3kSKa3Mr1V2b08uya.6', 2, NULL, NULL, NULL, NULL, '2024-11-06 06:41:24', '2024-11-06 06:41:24');
+
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

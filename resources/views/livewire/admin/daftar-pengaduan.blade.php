@@ -55,7 +55,7 @@
                             @if (auth()->user()->role != 'UnitKerja')
                                 <td class="align-middle text-center">
                                     <a href="javascript:void(0)"
-                                        class="btn btn-outline-danger btn-sm" wire:click="destroy('{{ Crypt::encrypt($pengaduan->id) }}')">
+                                        class="btn btn-outline-danger btn-sm" wire:click="destroy('{{ Crypt::encrypt($pengaduan->id) }}')" wire:confirm="Hapus data ini ?">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
                                 </td>
@@ -306,7 +306,7 @@
                                                 <div class="col-auto">
                                                     <a href="javascript:void(0)"
                                                         class="btn btn-outline-danger border-0 btn-sm"
-                                                        wire:click="destroyTindakan('{{ Crypt::encrypt($tanggapan->id) }}')">
+                                                        wire:click="destroyTindakan('{{ Crypt::encrypt($tanggapan->id) }}')" wire:confirm="Hapus data ini ?">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
                                                 </div>

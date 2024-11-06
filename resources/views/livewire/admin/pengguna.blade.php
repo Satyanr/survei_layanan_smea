@@ -229,7 +229,7 @@
                                                             class="fa-solid fa-right-to-bracket"></i> Masuk</a>
                                                 </li>
                                                 <li><a class="dropdown-item text-danger" href="javascript:void(0)"
-                                                        wire:click.prevent="delete('{{ Crypt::encrypt($pengguna->id) }}')"><i
+                                                        wire:click.prevent="delete('{{ Crypt::encrypt($pengguna->id) }}')" wire:confirm="Hapus data ini ?"><i
                                                             class="fa-solid fa-trash"></i> Hapus</a></li>
 
                                             </ul>
