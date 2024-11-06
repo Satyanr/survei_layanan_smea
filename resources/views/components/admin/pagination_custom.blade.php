@@ -2,7 +2,9 @@
     @if ($paginator->lastPage() > 1)
         <ul class="pagination">
             @if ($paginator->currentPage() > 2)
-                <li class="page-item"><a class="page-link" wire:click="gotoPage(1), '{{ $this->paginationName }}'">1</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" wire:click="gotoPage(1, '{{ $this->paginationName }}')">1</a>
+                </li>
                 @if ($paginator->currentPage() > 3)
                     <li class="page-item disabled"><span class="page-link">...</span></li>
                 @endif
@@ -18,8 +20,9 @@
                 @if ($paginator->currentPage() < $paginator->lastPage() - 2)
                     <li class="page-item disabled"><span class="page-link">...</span></li>
                 @endif
-                <li class="page-item"><a class="page-link"
-                        wire:click="gotoPage({{ $paginator->lastPage() }}, '{{ $this->paginationName }}')">{{ $paginator->lastPage() }}</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" wire:click="gotoPage({{ $paginator->lastPage() }}, '{{ $this->paginationName }}')">{{ $paginator->lastPage() }}</a>
+                </li>
             @endif
         </ul>
     @endif
