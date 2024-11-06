@@ -26,6 +26,9 @@
             <table class="table table-striped table-hover table-sm" style="font-size: 0.9rem;">
                 <thead class="text-center">
                     <tr>
+                        @if (auth()->user()->role != 'UnitKerja')
+                            <th class="align-middle bg-secondary-subtle">Hapus</th>
+                        @endif
                         @if ($tentangcrud == 'Permintaan Informasi')
                             <th class="align-middle bg-secondary-subtle">Tanggal Permintaan</th>
                             <th class="align-middle bg-secondary-subtle">Identitas</th>
@@ -49,7 +52,14 @@
                 <tbody>
                     @forelse ($pengaduans as $pengaduan)
                         <tr>
-
+                            @if (auth()->user()->role != 'UnitKerja')
+                                <td class="align-middle text-center">
+                                    <a href="javascript:void(0)"
+                                        class="btn btn-outline-danger btn-sm" wire:click="destroy('{{ Crypt::encrypt($pengaduan->id) }}')">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            @endif
                             <td class="align-middle text-center">{{ $pengaduan->tanggal_pengaduan }}</td>
                             <td class="align-middle text-center">
                                 @if ($pengaduan->identitas_pengaduan == 'Lengkap')

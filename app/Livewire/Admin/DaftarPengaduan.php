@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 use App\Models\PengaduanLink;
 use App\Models\LaporanTindakLanjut;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 
 class DaftarPengaduan extends Component
 {
@@ -132,6 +133,10 @@ class DaftarPengaduan extends Component
     {
         $id = Crypt::decrypt($id);
         $tindakan = LaporanTindakLanjut::find($id);
+        if ($tindakan->bukti_foto) {
+            $path = str_replace('storage/', 'public/', $tindakan->bukti_foto);
+            Storage::delete($path);
+        }
         $tindakan->delete();
         session()->flash('message', 'Tindakan Berhasil Dihapus');
         return redirect()->to('/admin/daftar-pengaduan/' . $this->tentangcrud);
@@ -161,5 +166,30 @@ class DaftarPengaduan extends Component
         // $this->gambarindicator = false;
         $this->identitasindicator = true;
         $this->tindaklanjutindicator = false;
+    }
+
+    public function destroy($id)
+    {
+        $id = Crypt::decrypt($id);
+        $itemlaporan = Pengaduan::find($id);
+
+
+        if ($itemlaporan->bukti_foto) {
+            $path = str_replace('storage/', 'public/', $itemlaporan->bukti_foto);
+            Storage::delete($path);
+        }
+
+        foreach ($itemlaporan->tindaklanjuts as $tindaklanjut) {
+            if ($tindaklanjut->bukti_foto) {
+                $path = str_replace('storage/', 'public/', $tindaklanjut->bukti_foto);
+                Storage::delete($path);
+            }
+        }
+        
+        $itemlaporan->tindaklanjuts()->delete();
+        $itemlaporan->pengaduanLinks()->delete();
+        $itemlaporan->delete();
+        session()->flash('message', 'Berhasil Dihapus');
+        return redirect()->to('/admin/daftar-pengaduan/' . $this->tentangcrud);
     }
 }
